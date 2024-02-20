@@ -1,0 +1,41 @@
+IMPORT random
+
+guesses = 0
+
+number = random.randint(1,4)
+INPUT name
+
+DISPLAY ("Well,", name + "! I am thinking of a number between 1 and 20.")
+DISPLAY ('Take a guess.')
+INPUT int guess
+    
+WHILE guess != number
+    WHILE guesses < 6
+        CASEWHERE guess < number
+            DISPLAY ('Your guess is too low.')
+            guesses = guesses + 1
+            DISPLAY guesses
+            DISPLAY ('Take a guess.')
+            INPUT int guess
+        if guess > number:
+            DISPLAY ('Your guess is too high.')
+            guesses = guesses + 1
+            DISPLAY guesses
+            DISPLAY ('Take a guess.')
+            INPUT int guess
+        if guess == number:
+            guesses = guesses + 1
+            DISPLAY guesses
+            break
+    break
+
+if guess == number:
+    if guesses == 0:
+        guesses = guesses + 1 #when guess is gotten on the first try, the while loop does not occur and therefore the first guess is not added. This fixes that :)
+    print("Yay! you got it! Congratulations! It only took " + str(guesses) + " guesses!")
+    
+else:
+    numberstring = str(number)
+    print(" :( The number was " + numberstring))
+    
+print('')
