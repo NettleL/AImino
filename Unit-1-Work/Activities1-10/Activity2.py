@@ -52,7 +52,8 @@ while humanmove != '':
         humanmove = input("Scissors, Paper, Rock? ").lower()  
     else:
         humanmove = input("Invalid Move. Scissors, Paper, Rock? ").lower()
-print("Final Score:")  
+print('')
+print("FINAL SCORE")  
 print('')
 print("Your score:", humancounter)
 print("Computer score:", computercounter)
