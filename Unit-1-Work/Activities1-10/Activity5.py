@@ -37,14 +37,14 @@ print('')
 # 3. ------
 print('3. MAGIC DATES')
 print('')
-day3 = int(input('Please enter in a a date in numberical form: '))
+day3 = int(input('Please enter in a date in numberical form: '))
 month3 = int(input('Please enter in a month in numberical form (1-12): '))
 year3 = int(input('Please enter in a year in numberical form (two digits): '))
 
 if month3*day3 == year3:
-    print('It is a magic month!')
+    print('It is a magic date!')
 else:
-    print('It is not a magic month')
+    print('It is not a magic date')
 print('')  
 
 # 4. ------
@@ -59,3 +59,13 @@ for no4 in nolist4:
 print(f'The average of the numbers of the list in the range 0-100 = {sum(nolistfinal4)/len(nolistfinal4)}')
 
 print('')
+
+# 5. ------
+print('5. SENTENCE CAPITALISER')
+print('')
+finalstrings = ''
+sentences5 = input('Enter a few sentences: ')
+splitsentences5 = sentences5.split('. ')
+for sentences in splitsentences5:
+    finalstrings = finalstrings + sentences.capitalize() + '. '
+print(finalstrings)
