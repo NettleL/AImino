@@ -35,8 +35,8 @@ for answer in range(9):
     score = score + 1
     print(bar(score,name))
     print(bar(score-1,'bot1'))
-#    sleep(1) - WANT TO CLEAR SCREEN AFTER EVERY BAR - DOESN'T WORK - NEED TO FIX
-#    clear()
-#    title()
+    time.sleep(1)
+    os.system('cls')
+    title()
 # I used the for loop to test if the changing of the bar works, 
  
