@@ -2,6 +2,7 @@ import time, os
 from colorama import Fore, Back, Style
 
 #NOTE - WHAT ABOUT QUIZZZLET
+subjectchoice = ''
 
 def clearscreen(): #clears screen
     if os.name == 'posix': #if os is Mac or Linux
@@ -10,7 +11,7 @@ def clearscreen(): #clears screen
         _ = os.system('cls')
     #https://www.skillvertex.com/blog/clear-screen-in-python/#:~:text=If%20it's%20Linux%20or%20Mac,system('cls').
 
-def title(): #prints title (used after screen is cleared)
+def cleartitle(): #clearsscreen + prints title
     clearscreen()
     print('''
 ___  ___  __  ___       ___ ___ 
@@ -28,8 +29,16 @@ def validity(input, parameter): #checks validity MIGHT NEED TO DELETE
         return input.isalpha()
     else:
         return 'ISSUE'
-     
 
+def subjectchoicefunction():
+    global subjectchoice
+    subjectchoice = input('SUBJECT CHOICE (1,2,3,4, exit): ')
+    while subjectchoice not in ['1', '2', '3', '4', 'exit']:
+        print('Please enter a valid number - 1, 2, 3, 4 or exit')
+        subjectchoice = input('SUBJECT CHOICE (1,2,3,4, exit): ')
+    return subjectchoice
+
+clearscreen()
 #INITIAL TITLE
 print('''
       
@@ -49,11 +58,11 @@ DISCLAIMER: We are not affiliated, associated, authorized, endorsed by, or in an
       ''')
 
 time.sleep(2)
-title()
+cleartitle()
 
 name = input('PLEASE ENTER YOUR NAME: ') #gets name
 
-print(f'''Hello, {name}!
+programinfo = (f'''Hello, {name}!
       
 This program is divided into four sections
 1. The Physical World
@@ -61,32 +70,48 @@ This program is divided into four sections
 3. The Living World
 4. The Chemical World
 
-Please choose a section by entering the corresponding number below
+Please choose a section by entering the corresponding number below. Type in 'exit' to exit the program
       ''')
 
-subjectchoice = input('SUBJECT CHOICE: ')
-while subjectchoice not in ['1', '2', '3', '4']:
-    print('Please enter a valid number - either 1, 2, 3 or 4')
-    subjectchoice = input('SUBJECT CHOICE: ')
+print(programinfo)
+subjectchoicefunction()
 
-if subjectchoice == '1': #MAYBE DO A DOUBLE CHECK - I.E ARE YOU SURE
-    print('')
-    print('Physics')
-    time.sleep(1)
-    title()
-elif subjectchoice == '2':
-    print('')
-    print('Earth and Space')
-    time.sleep(1)
-    title()
-elif subjectchoice == '3':
-    print('')
-    print('BIOLOGY!!!!!!!!!')
-    time.sleep(1)
-    title()
-elif subjectchoice == '4':
-    print('')
-    print('Chemistry')
-    time.sleep(1)
-    title()
+while subjectchoice != 'exit':
+    #PHYSICS
+    while subjectchoice == '1':
+        print('')
+        print('Physics')
+        time.sleep(1)
+        cleartitle()
+        print('PHYS STUFF')
+        subjectchoicefunction()
+    
+    # EARTH AND SPACE
+    while subjectchoice == '2':
+        print('')
+        print('Earth and Space')
+        time.sleep(1)
+        cleartitle()
+        print('E+S STUFF')
+        subjectchoicefunction()
+        
+    # BIOLOGY
+    while subjectchoice == '3':
+        print('')
+        print('Biology')
+        time.sleep(1)
+        cleartitle()
+        print('BIO STUFF')
+        subjectchoicefunction()
+    
+    # CHEMISTRY
+    while subjectchoice == '4':
+        print('')
+        print('Chemistry')
+        time.sleep(1)
+        cleartitle()
+        print('CHEM STUFF')
+        subjectchoicefunction()
 
+clearscreen()
+print('BYEBYE')
