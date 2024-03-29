@@ -27,9 +27,8 @@ ______{'___'*score}
     # for each new score (bar becomes bigger/smaller based on score)
     return newbar
 
-print('')
-print(bar(score,name)) 
-print(bar(score,'bot1')) 
+os.system('cls')
+title()
 
 for answer in range(9):
     score = score + 1
