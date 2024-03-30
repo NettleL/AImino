@@ -1,13 +1,6 @@
 from colorama import  Fore, Back, Style
 
-def colr(text):
-    return(Style.DIM + Fore.CYAN + text + Style.RESET_ALL)
-
-def bold(text):
-    return(Style.BRIGHT + text + Style.NORMAL)
-
-def back(text):
-    return(Back.WHITE + text + Back.RESET)
+from Colour import *
     
     
 physicscontent = f'''
@@ -288,5 +281,3 @@ In a chemical change, bonds are broken and formed to make new substances
     {colr('•')} Precipitate (insoluble solid substance) forms in the solution and does not disappear. 
 
 '''
-
-print(chemcontent)
