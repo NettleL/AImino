@@ -1,0 +1,23 @@
+import os, time
+os.system('cls')
+
+print('''
+~~~888~~~ 888      e    e      888~~  888~-_   
+   888    888     d8b  d8b     888___ 888   \  
+   888    888    d888bdY88b    888    888    | 
+   888    888   / Y88Y Y888b   888    888   /  
+   888    888  /   YY   Y888b  888    888_-~   
+   888    888 /          Y888b 888___ 888 ~-_  
+     
+      ''')
+
+continueinput = input('Enter something in to start the timer: ')
+while continueinput != 'exit':
+    start_time = time.time()
+    input('Finish Timer: ')
+    end_time = time.time()
+    total_time = end_time - start_time
+    #print(round(total_time,2), 'seconds')
+    print(total_time, 'seconds')
+    print('')
+    continueinput = input('Start Timer: ')
