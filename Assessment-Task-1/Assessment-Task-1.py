@@ -8,7 +8,7 @@ activitychoice = ''
 
 physicsstats = []
 biostats = []
-chemsstats = []
+chemstats = []
 
 def clearscreen(): #clears screen
     if os.name == 'posix': #if os is Mac or Linux
@@ -30,10 +30,10 @@ ___  ___  __  ___       ___ ___
     
 def subjectchoicefunction():
     global subjectchoice
-    subjectchoice = input(colr('SUBJECT CHOICE (1, 2, 3 or exit): '))
-    while subjectchoice not in ['1', '2', '3', 'exit']:
-        print('Please enter a valid response - 1, 2, 3, exit')
-        subjectchoice = input(colr('SUBJECT CHOICE (1, 2, 3 or exit): '))
+    subjectchoice = input(colr('SUBJECT CHOICE (1, 2, 3, 4 or exit): '))
+    while subjectchoice not in ['1', '2', '3', '4', 'exit']:
+        print('Please enter a valid response - 1, 2, 3, 4 or exit')
+        subjectchoice = input(colr('SUBJECT CHOICE (1, 2, 3, 4 or exit): '))
     return subjectchoice
 
 def activitychoicefunction():
@@ -98,12 +98,18 @@ def table(stats):
         if attempt > 999:
             alignedattempt = attempt
         else:
-            alignedattempt = str(attempt).center(3)
-        print(f'''|  {attempt}      |  {alignedtime}  |    {stat[1]}    |
+            alignedattempt = str(attempt).ljust(3)
+        print(f'''|  {colr(alignedattempt)}    |  {colr(alignedtime)}  |    {colr(str(stat[1]))}    |
 +---------+----------+---------+''')
         attempt += 1
+
+def alltables(subject,dictionary):
+    print(colr('─────'), bold(subject), colr('─────'))
+    table(dictionary)
+    if dictionary == []:
+        print(f'''|            {colr('EMPTY')}             |
++---------+----------+---------+''')
     print('')
-    print('NOTE: If Time (s) displays (ERROR!), the attempt time was > 999999 seconds')
     
 def subjectfunction(subject):
     content = ''
@@ -148,6 +154,8 @@ def subjectfunction(subject):
             print(bar(schard,name))
             print(colr('FINAL SCORE ='), schard)
             table(finstats)
+            print('')
+            print('NOTE: If Time (s) displays (ERROR!), the attempt time was > 999999 seconds')
             #make a pretty table
             input(colr('Please enter in anything to continue: '))
             cleartitle()
@@ -191,6 +199,7 @@ This program is divided into three sections
 1. The Physical World
 2. The Living World
 3. The Chemical World
+4. Scoreboard
 ''')}
 Please choose a section by entering the corresponding number below. Type in 'exit' to exit the program
       ''')
@@ -201,7 +210,7 @@ This subject is divided into two sections
 1. Content
 2. Questions
 ''')}
-Please choose a section by entering the corresponding number below. Type in 'exit' to exit the program
+Please choose a section by entering the corresponding number below. Type in 'exit' to exit this subject
                 ''')
 
 questioninfo = (f'''
@@ -227,6 +236,19 @@ while subjectchoice != 'exit':
     # CHEMISTRY
     while subjectchoice == '3':
         subjectfunction('chem')
+    
+    #SCOREBOARD
+    while subjectchoice == '4':
+        cleartitle() 
+        alltables(' PHYSICS ',physicsstats)
+        alltables(' BIOLOGY ',biostats)
+        alltables('CHEMISTRY',chemstats)
+        print('')
+        input(colr('Please enter in anything to continue: '))
+        cleartitle()
+        print(programinfo)
+        subjectchoicefunction()
+        
 
 clearscreen()
 print(f''' 
