@@ -6,9 +6,9 @@ from Colour import *
 subjectchoice = ''
 activitychoice = ''
 
-physicsscore = []
-bioscore = []
-chemscore = []
+physicsstats = []
+biostats = []
+chemsstats = []
 
 def clearscreen(): #clears screen
     if os.name == 'posix': #if os is Mac or Linux
@@ -44,6 +44,19 @@ def activitychoicefunction():
         activitychoice = input(colr('SECTION CHOICE (1, 2 or exit): '))
     return activitychoice
 
+def bar(score,name): #defines the function that displays the bar
+    newbar = (f'''{name}
+______{'___'*score}
+   {'   '*score} {score} |
+______{'___'*score} 
+          ''')
+    # adds more length to bar 
+    # ______
+    #       |
+    # ______
+    # for each new score (bar becomes bigger/smaller based on score)
+    return newbar
+
 def answer(): #gets answer, checks validity of answer and returns answer when valid.
   ans = input('→ ')
   while ans not in ['a','b','c','d']:
@@ -51,25 +64,50 @@ def answer(): #gets answer, checks validity of answer and returns answer when va
     ans = input('→ ')
   return ans
 
-def questions(dict): #asks questions from dictionary, checks answer and adds score
-  score = 0 #initial score
-  tempqs = dict.copy() # creates a temporary dictionary copy (so questions can be deleted from tempdict after they are asked, but not from the actual dictionary - therefore it can be accessed when the quiz is reattempted.)
-  while tempqs != {}: #while the temporary dictionary has not run out of questions
-    qno = random.choice(list(tempqs.keys())) #picks a random key from dictionary
-    print(tempqs[qno][0]) #prints the question
-    print('')
-    ans = answer() #answer function
-    if ans == tempqs[qno][1]: #if answer is correct
-     print('Correct')
-     score = score + 1 #add 1 to score
-    else:
-      print('Wrong')
-    del tempqs[qno] #deletes q. from tempdict so its not asked again in the quiz attempt
-  return score 
-  print('Done!')
+def questions(dict, score): #asks questions from dictionary, checks answer and adds score
+    correct = ''
+    tempqs = dict.copy() # creates a temporary dictionary copy (so questions can be deleted from tempdict after they are asked, but not from the actual dictionary - therefore it can be accessed when the quiz is reattempted.)
+    while tempqs != {}: #while the temporary dictionary has not run out of questions
+        print(bar(score, name))
+        qno = random.choice(list(tempqs.keys())) #picks a random key from dictionary
+        print(tempqs[qno][0]) #prints the question
+        print('')
+        ans = answer() #answer function
+        if ans == tempqs[qno][1]: #if answer is correct
+            correct = colr('Correct')
+            score = score + 1
+        else:
+            correct = colr('Wrong')
+        del tempqs[qno] #deletes q. from tempdict so its not asked again in the quiz attempt
+        cleartitle()
+        print(correct)
+        print('')
+    return score 
 
+def table(stats):
+    print('''
++---------+----------+---------+
+| ATTEMPT | TIME (s) |  SCORE  |
++---------+----------+---------+''')
+    attempt = 1
+    for stat in stats:
+        if len(str(stat[0])) >6:
+            alignedtime = 'ERROR!'
+        else:
+            alignedtime = str(stat[0]).ljust(6)
+        if attempt > 999:
+            alignedattempt = attempt
+        else:
+            alignedattempt = str(attempt).center(3)
+        print(f'''|  {attempt}      |  {alignedtime}  |    {stat[1]}    |
++---------+----------+---------+''')
+        attempt += 1
+    print('')
+    print('NOTE: If Time (s) displays (ERROR!), the attempt time was > 999999 seconds')
+    
 def subjectfunction(subject):
     content = ''
+    global currentscore
     qeasy = {}
     qmid = {}
     qhard = {}
@@ -77,8 +115,8 @@ def subjectfunction(subject):
         content = physicscontent
         qeasy = physicsqseasy
         qmid = physicsqseasy # MAKE THESE PHYSICS Qs MID
-        qhard = physicsqseasy # MAKE THESE PHYSICS Qs MID
-        finscore = physicsscore
+        qhard = physicsqseasy # MAKE THESE PHYSICS Qs HARD
+        finstats = physicsstats
     elif subject == 'bio':
         content = biocontent
     elif subject == 'chem':
@@ -96,12 +134,21 @@ def subjectfunction(subject):
             activitychoicefunction()
         while activitychoice == '2':
             cleartitle()
+            print(questioninfo)
+            input(colr('Please enter in anything to start the quiz: '))
+            cleartitle()
             ### ADD QUESTIONS INFORMATION
-            sceasy = questions(qeasy)
-            scmid = questions(qmid)
-            schard = questions(qhard)
-            finscore.append(sceasy + scmid + schard)
-            print(finscore)
+            starttime = time.time()
+            sceasy = questions(qeasy, 0)
+            scmid = questions(qmid, sceasy)
+            schard = questions(qhard, scmid)
+            endtime = time.time()
+            total_time = endtime - starttime
+            finstats.append(tuple([round(total_time,2),schard]))
+            print(bar(schard,name))
+            print(colr('FINAL SCORE ='), schard)
+            table(finstats)
+            #make a pretty table
             input(colr('Please enter in anything to continue: '))
             cleartitle()
             print(activityinfo)
@@ -110,7 +157,7 @@ def subjectfunction(subject):
     print(programinfo)
     subjectchoicefunction()
 
-
+#_________________________________________________________________________________
 clearscreen()
 #INITIAL TITLE
 print(f'''
@@ -156,6 +203,14 @@ This subject is divided into two sections
 ''')}
 Please choose a section by entering the corresponding number below. Type in 'exit' to exit the program
                 ''')
+
+questioninfo = (f'''
+There are 9 questions in a subject {colr('''
+3 Easy
+3 Medium
+3 Hard''')}
+This is timed {colr(':)')}
+''')
 
 print(programinfo)
 subjectchoicefunction()
