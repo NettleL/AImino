@@ -6,6 +6,10 @@ from Colour import *
 subjectchoice = ''
 activitychoice = ''
 
+physicsscore = []
+bioscore = []
+chemscore = []
+
 def clearscreen(): #clears screen
     if os.name == 'posix': #if os is Mac or Linux
         _ = os.system('clear')
@@ -40,10 +44,41 @@ def activitychoicefunction():
         activitychoice = input(colr('SECTION CHOICE (1, 2 or exit): '))
     return activitychoice
 
+def answer(): #gets answer, checks validity of answer and returns answer when valid.
+  ans = input('→ ')
+  while ans not in ['a','b','c','d']:
+    print('Invalid')
+    ans = input('→ ')
+  return ans
+
+def questions(dict): #asks questions from dictionary, checks answer and adds score
+  score = 0 #initial score
+  tempqs = dict.copy() # creates a temporary dictionary copy (so questions can be deleted from tempdict after they are asked, but not from the actual dictionary - therefore it can be accessed when the quiz is reattempted.)
+  while tempqs != {}: #while the temporary dictionary has not run out of questions
+    qno = random.choice(list(tempqs.keys())) #picks a random key from dictionary
+    print(tempqs[qno][0]) #prints the question
+    print('')
+    ans = answer() #answer function
+    if ans == tempqs[qno][1]: #if answer is correct
+     print('Correct')
+     score = score + 1 #add 1 to score
+    else:
+      print('Wrong')
+    del tempqs[qno] #deletes q. from tempdict so its not asked again in the quiz attempt
+  return score 
+  print('Done!')
+
 def subjectfunction(subject):
     content = ''
+    qeasy = {}
+    qmid = {}
+    qhard = {}
     if subject == 'physics':
         content = physicscontent
+        qeasy = physicsqseasy
+        qmid = physicsqseasy # MAKE THESE PHYSICS Qs MID
+        qhard = physicsqseasy # MAKE THESE PHYSICS Qs MID
+        finscore = physicsscore
     elif subject == 'bio':
         content = biocontent
     elif subject == 'chem':
@@ -60,7 +95,14 @@ def subjectfunction(subject):
             print(activityinfo)
             activitychoicefunction()
         while activitychoice == '2':
-            print('questions')
+            cleartitle()
+            ### ADD QUESTIONS INFORMATION
+            sceasy = questions(qeasy)
+            scmid = questions(qmid)
+            schard = questions(qhard)
+            finscore.append(sceasy + scmid + schard)
+            print(finscore)
+            input(colr('Please enter in anything to continue: '))
             cleartitle()
             print(activityinfo)
             activitychoicefunction()
