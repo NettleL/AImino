@@ -2,8 +2,7 @@ from colorama import  Fore, Back, Style
 
 from Colour import *
     
-import random
-    
+# SUBJECT CONTENT
 physicscontent = f'''
 {colr('─────')} {bold('EVERYDAY ENERGY')} {colr('─────')}   
              
@@ -22,7 +21,7 @@ physicscontent = f'''
         • {colr('Gravitational PE')} -  the energy an object possesses because of its position in relation to the gravitational field.
             If we lift an object up, it gains gravitational potential energy (GPE).
             The larger the mass and the larger the height, the more GPE the object gains. 
-        • Chemical PE - the energy stored within a chemical substance.
+        • {colr('Chemical PE')} - the energy stored within a chemical substance.
             Using chemical reactions to break the bonds holding the atoms together releases the energy.
 
     • {colr('Nuclear energy')} -  involves the splitting or joining of the centre (nuclei) of atoms to release (large) amounts of energy.
@@ -94,7 +93,7 @@ Bacteria cells can be identified by the following characteristics
 {colr('•')} very small size
 {colr('•')} presence of a cell wall
 {colr('•')} absence of a membrane-bound nucleus and organelles
-{colr('•')} Some bacteria may have cilia (short hair like structures) and/or flagella (long tail-like structures) on the surface of the cells, which help with movement.
+{colr('•')} Some bacteria may have flagella (long tail-like structures) on the surface of the cells, which help with movement.
 
 {colr('Protozoa')}
 Protozoa are from the kingdom Protista and tend to be much larger than bacteria, up to one millimetre in length. They are eukaryotic organisms and as such have membrane-bound organelles and a true nucleus. 
@@ -111,7 +110,7 @@ Fungi have
 {colr('•')} Fungi do not require cilia or flagella for movement as they must grow on a surface
 
 
-{colr('─────')} {bold('ECOSYSTEMS')} {colr('─────')}
+{colr('─────')} {bold('ORGANISMS')} {colr('─────')}
 
 
 {colr('FLOWERING PLANTS')}
@@ -126,7 +125,7 @@ The function of the root system is to {colr('anchor the plant to a surface and t
 Photosynthesis is the reaction used by plants to transform light energy into chemical energy. Photosynthesis needs the help of a chemical called chlorophyll, the green pigment in the chloroplasts of plant cells. Chloroplasts are found in cells in the shoot system, particularly in tissues near the surface of the leaves.
 Photosynthesis can be summarised by the following word and symbol equations
 
-{colr('Carbon dioxide + light energy + water + light→ glucose + oxygen light')}
+{colr('carbon dioxide + water (+ light energy) —→ glucose + oxygen ')}
 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂
 
 {colr('Mitosis')}
@@ -147,7 +146,7 @@ chemcontent = f'''
     {colr('•')} Atoms cannot be created or destroyed, and atoms are indivisible.
     {colr('•')} Particles are always moving. When it is hotter, particles move faster; when it is cooler, particles move slower. 
     {colr('•')} All atoms of the same element are identical, but are different from atoms of other elements
-    {colr('•')} Atoms can join together to form larger particles called molecules When they combine, their masses add together
+    {colr('•')} Atoms can join together to form larger particles called molecules. When they combine, their masses add together
     {colr('•')} Different atoms can combine to form compounds 
     {colr('•')} Forces hold molecules and compounds together to stop them from separating.
     {colr('•')} Atoms follow these rules in all substances. 
@@ -187,7 +186,7 @@ Metals are found on the {colr('left-hand')} side of the periodic table, non-meta
    Actinide   |Ac |Th |Pa | U |Np |Pu |Am |Cm |Bk |Cf |Es |Fm |Md |No |Lw |
               -------------------------------------------------------------
 
-* {colr('Blue elements are metalloids')}. Polonium is generally considered a metal but sometimes classed as a metalloid, and Astatine is so unstable that it has not been determined if it is a metal or metalloid.
+* {colr('Blue elements are metalloids')}. Polonium is generally considered a metal but sometimes classed as a metalloid, and Astatine is so unstable that it's classification has not been fully concluded.
 
 {colr('Chemical + Physical Properties')}
 Physical properties of matter are properties that can be measured by physical means - i.e {colr('without changing the chemical composition of the matter')}
@@ -283,6 +282,8 @@ In a chemical change, bonds are broken and formed to make new substances
 
 '''
 
+
+#QUESTIONS
 physicsqseasy = {
 '1':(f'''{colr('What does PE stand for in physics?')}
 {colr('a.')} Particle Energy
@@ -296,8 +297,201 @@ physicsqseasy = {
 {colr('b.')} Liquid & Gas
 {colr('c.')} Solid & Gas
 {colr('d.')} All
-''','b')
+''','b'),
 
+'3':(f'''{colr('Which of these are not types of energy?')}
+{colr('a.')} Thermal Energy
+{colr('b.')} Physical PE
+{colr('c.')} Gravitational PE
+{colr('d.')} Light Energy
+''','b')
+}
+
+physicsqsmid = {
+'1':(f'''{colr('What type of energy transformation occurs in an electric fan?')}
+{colr('a.')} Electrical Energy —→ Kinetic Energy
+{colr('b.')} Chemical Energy —→ Electrical Energy
+{colr('c.')} Kinetic Energy —→ Electrical Energy
+{colr('d.')} Electrical Energy —→ Thermal Energy 
+''', 'a'),
+
+'2':(f'''{colr('What type of energy transformation occurs in a hydroelectric dam?')}
+{colr('a.')} Electrical Energy —→ Kinetic Energy
+{colr('b.')} Chemical Energy —→ Electrical Energy
+{colr('c.')} Kinetic Energy —→ Electrical Energy
+{colr('d.')} Electrical Energy —→ Thermal Energy 
+''','c'),
+
+'3':(f'''{colr('What type of energy transformation occurs in a battery')}
+{colr('a.')} Electrical Energy —→ Kinetic Energy
+{colr('b.')} Chemical Energy —→ Electrical Energy
+{colr('c.')} Kinetic Energy —→ Electrical Energy
+{colr('d.')} Electrical Energy —→ Thermal Energy 
+''','b')
+}
+
+physicsqshard = {
+'1':(f'''{colr('What type of energy transformation occurs in the sun?')}
+{colr('a.')} Electrical Energy —→ Kinetic Energy
+{colr('b.')} Chemical PE —→ Kinetic Energy
+{colr('c.')} Nuclear Energy —→ Heat Energy + Light Energy
+{colr('d.')} Electrical Energy —→ Heat Energy + Light Energy
+''', 'c'),
+
+'2':(f'''{colr('What type of energy transformation occurs when music plays from a smartphone?')}
+{colr('a.')} Chemical PE  —→ Electrical Energy —→ Kinetic Energy —→ Sound Energy 
+{colr('b.')} Thermal Energy —→ Electrical Energy —→ Sound Energy 
+{colr('c.')} Kinetic Energy —→ Electrical Energy —→ Thermal Energy —→ Sound Energy 
+{colr('d.')} None of the above
+''','a'),
+
+'3':(f'''{colr('What type of energy transformation occurs in a coal power plant?')}
+{colr('a.')} Thermal Energy —→ Chemical PE —→ Kinetic Energy —→ Electrical Energy
+{colr('b.')} Chemical PE —→ Thermal Energy —→ Kinetic Energy —→ Electrical Energy
+{colr('c.')} Kinetic Energy —→ Chemical PE —→ Thermal Energy —→ Electrical Energy
+{colr('d.')} None of the above
+''','b')
+}
+
+bioqseasy = {
+'1':(f'''{colr('What order consumer is a herbivore?')}
+{colr('a.')} First Order Consumer
+{colr('b.')} Second Order Consumer
+{colr('c.')} Third Order Consumer
+{colr('d.')} Fourth Order Consumer
+''', 'a'),
+
+'2':(f'''{colr('What order consumer is a top order predator?')}
+{colr('a.')} First Order Consumer
+{colr('b.')} Second Order Consumer
+{colr('c.')} Third Order Consumer
+{colr('d.')} Fourth Order Consumer
+''', 'c'),
+
+'3':(f'''{colr('What order consumer is a detritivore?')}
+{colr('a.')} First Order Consumer
+{colr('b.')} Second Order Consumer
+{colr('c.')} Third Order Consumer
+{colr('d.')} Fourth Order Consumer
+''', 'd')
+}
+
+bioqsmid = {
+'1':(f'''{colr('What is the word equation for photosynthesis?')}
+{colr('a.')} carbon dioxide + water (+ light energy) —→ glucose + oxygen
+{colr('b.')} glucose + oxygen (+ light energy) —→ carbon dioxide + water
+{colr('c.')} oxygen + water (+ light energy) —→ carbon dioxide + glucose
+{colr('d.')} carbon dioxide + glucose (+ light energy) —→ oxygen + water
+''', 'a'),
+
+'2':(f'''{colr('Which of these are not characteristics of bacteria?')}
+{colr('a.')} Small Size
+{colr('b.')} Absence of cell wall
+{colr('c.')} Flagella
+{colr('d.')} Absence of a membrane-bound nucleus and organelles
+''', 'b'),
+
+'3':(f'''{colr('Which of these are not characteristics of protozoa?')}
+{colr('a.')} Pellice
+{colr('b.')} Cilia or Flagella
+{colr('c.')} Membrane Bound Organelles
+{colr('d.')} Cell Wall
+''', 'd')
+}
+
+bioqshard = {
+'1':(f'''{colr('What is the balanced equation for photosynthesis?')}
+{colr('a.')} 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂
+{colr('b.')} 6CO₂ + 6O₂ → C₂H₁₆O₂ + 6H₂O
+{colr('c.')} CO₂ + 6H₂O → C₆H₂O₆ + O₂
+{colr('d.')} 6CO₂ + 6H₂O → C₂H₁₆O₂ + 6O₂
+''', 'a'),
+
+'2':(f'''{colr('''Staphylococcus is a microorganism about 0.5 – 1.0 μm in diamter.
+It contains a cell wall, but no membrane bound organelles, as it is prokaryotic.
+What type of microorganism is it?''')}
+{colr('a.')} Protozoa
+{colr('b.')} Bacteria
+{colr('c.')} Fungi
+{colr('d.')} Archae
+''', 'b'),
+
+'3':(f'''{colr('''Histoplasma Capsulatum is a eukaryotic microorganism with a cell wall consisting of chitin.
+What type of microorganism is it?''')}
+{colr('a.')} Protozoa
+{colr('b.')} Bacteria
+{colr('c.')} Fungi
+{colr('d.')} Archae
+''', 'c')
+}
+
+chemqseasy = {
+'1':(f'''{colr('Which of these is not an indicator of a chemical reaction?')}
+{colr('a.')} Production of Odor
+{colr('b.')} Change in Heat
+{colr('c.')} Production of Light
+{colr('d.')} Change in Shape
+''', 'd'),
+
+'2':(f'''{colr('Which of these is not a chemical property?')}
+{colr('a.')} Flammability
+{colr('b.')} Reactivity
+{colr('c.')} Electrical Conductivity
+{colr('d.')} Toxicity
+''', 'c'),
+
+'3':(f'''{colr('Which of these is not homogenous?')}
+{colr('a.')} Sand
+{colr('b.')} Air
+{colr('c.')} Milk
+{colr('d.')} Saltwater
+''', 'a')
+}
+
+chemqsmid = {
+'1':(f'''{colr('Which of these is a property of non metals?')}
+{colr('a.')} Solid at Room Temperature
+{colr('b.')} Non-Malleable
+{colr('c.')} Electrical Conductor
+{colr('d.')} Silvery-Grey
+''', 'b'),
+
+'2':(f'''{colr('Which of these is a property of mixtures')}
+{colr('a.')} Contains ≥ 2 elements or compounds
+{colr('b.')} No fixed ratio
+{colr('c.')} Components aren't chemically bonded
+{colr('d.')} All
+''', 'd'),
+
+'3':(f'''{colr('Which of these is not a type of compound')}
+{colr('a.')} Molecular
+{colr('b.')} Lattice
+{colr('c.')} Atomic
+{colr('d.')} Polymer
+''', 'c')
+}
+
+chemqshard = {
+'1':(f'''{colr('Gallium is malleable and ductile, but melts at < 30° C. It is a')}
+{colr('a.')} Metal
+{colr('b.')} Metalloid
+{colr('c.')} Non-Metal
+{colr('d.')} Unknown
+''', 'a'),
+
+'2':(f'''{colr('Diamond is a lustrous substance which is a good thermal conductor. It is a')}
+{colr('a.')} Metal
+{colr('b.')} Metalloid
+{colr('c.')} Non-Metal
+{colr('d.')} Unknown
+''', 'c'),
+
+'3':(f'''{colr('Iodine is a lustrous element that is solid at room temperature. However, there is no sea of delocalised electrons. It is a')}
+{colr('a.')} Metal
+{colr('b.')} Metalloid
+{colr('c.')} Non-Metal
+{colr('d.')} Unknown
+''', 'c')
 }
 
 

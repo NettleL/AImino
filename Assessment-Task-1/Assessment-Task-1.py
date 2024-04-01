@@ -1,4 +1,5 @@
 import time, os
+import random
 from colorama import Fore, Back, Style
 from SubjectData import *
 from Colour import *
@@ -89,9 +90,9 @@ def table(stats):
 +---------+----------+---------+
 | ATTEMPT | TIME (s) |  SCORE  |
 +---------+----------+---------+''')
-    attempt = 1
+    attempt = 1 #IS AN INTEGER
     for stat in stats:
-        if len(str(stat[0])) >6:
+        if len(str(stat[0])) > 6:
             alignedtime = 'ERROR!'
         else:
             alignedtime = str(stat[0]).ljust(6)
@@ -113,20 +114,27 @@ def alltables(subject,dictionary):
     
 def subjectfunction(subject):
     content = ''
-    global currentscore
     qeasy = {}
     qmid = {}
     qhard = {}
     if subject == 'physics':
         content = physicscontent
         qeasy = physicsqseasy
-        qmid = physicsqseasy # MAKE THESE PHYSICS Qs MID
-        qhard = physicsqseasy # MAKE THESE PHYSICS Qs HARD
+        qmid = physicsqsmid
+        qhard = physicsqshard
         finstats = physicsstats
     elif subject == 'bio':
         content = biocontent
+        qeasy = bioqseasy
+        qmid = bioqsmid
+        qhard = bioqshard
+        finstats = biostats
     elif subject == 'chem':
         content = chemcontent
+        qeasy = chemqseasy
+        qmid = chemqsmid
+        qhard = chemqshard
+        finstats = chemstats
     cleartitle()
     print(activityinfo)
     activitychoicefunction()
@@ -149,7 +157,7 @@ def subjectfunction(subject):
             scmid = questions(qmid, sceasy)
             schard = questions(qhard, scmid)
             endtime = time.time()
-            total_time = endtime - starttime
+            total_time = endtime - starttime #IS FLOAT
             finstats.append(tuple([round(total_time,2),schard]))
             print(bar(schard,name))
             print(colr('FINAL SCORE ='), schard)
@@ -185,7 +193,6 @@ print(f'''
 All content is taken from Zhang, J. et al., Oxford Insight Science 8 student book, Victoria, Oxford University Press, 2014.
 
 ''')
-time.sleep(1)
 input(colr('Please enter in anything to start: '))
 cleartitle()
 
@@ -194,7 +201,7 @@ name = input(colr('PLEASE ENTER YOUR NAME: ')) #gets name
 programinfo = (f'''
 Hello, {colr(name)}!
       
-This program is divided into three sections
+This program is divided into four sections
 {colr('''
 1. The Physical World
 2. The Living World
@@ -240,6 +247,11 @@ while subjectchoice != 'exit':
     #SCOREBOARD
     while subjectchoice == '4':
         cleartitle() 
+        if physicsstats == [] and biostats == [] and chemstats == []:
+            print(f'{colr("DO A QUIZ!!! YOU'VE GOT THIS,")} {name.upper()}{colr('!')}')
+        else:
+            print(f'{colr("GOOD JOB,")} {name.upper()}{colr('!')}')
+        print('')
         alltables(' PHYSICS ',physicsstats)
         alltables(' BIOLOGY ',biostats)
         alltables('CHEMISTRY',chemstats)
@@ -249,6 +261,14 @@ while subjectchoice != 'exit':
         print(programinfo)
         subjectchoicefunction()
         
+cleartitle()
+print(colr('FINAL SCORES :)'))
+print('')
+alltables(' PHYSICS ',physicsstats)
+alltables(' BIOLOGY ',biostats)
+alltables('CHEMISTRY',chemstats)
+print('')
+input(colr('Please enter in anything to continue: '))
 
 clearscreen()
 print(f''' 
