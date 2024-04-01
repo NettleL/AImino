@@ -61,7 +61,7 @@ ______{'___'*score}
 def answer(): #gets answer, checks validity of answer and returns answer when valid.
   ans = input('→ ')
   while ans not in ['a','b','c','d']:
-    print('Invalid')
+    print('Invalid. Please enter in either a, b, c or d')
     ans = input('→ ')
   return ans
 
@@ -203,9 +203,9 @@ Hello, {colr(name)}!
       
 This program is divided into four sections
 {colr('''
-1. The Physical World
-2. The Living World
-3. The Chemical World
+1. Physics
+2. Biology
+3. Chemistry
 4. Scoreboard
 ''')}
 Please choose a section by entering the corresponding number below. Type in 'exit' to exit the program
