@@ -35,17 +35,17 @@ ___  ___  __  ___       ___ ___
 def subjectchoicefunction(): #Checks if subject choice is valid
     global subjectchoice
     subjectchoice = input(colr('SUBJECT CHOICE (1, 2, 3, 4 or exit): '))
-    while subjectchoice not in ['1', '2', '3', '4', 'exit']: #While subject choice is not valid
+    while subjectchoice not in ['1', '2', '3', '4', 'exit']: 
         print('Please enter a valid response - 1, 2, 3, 4 or exit')
-        subjectchoice = input(colr('SUBJECT CHOICE (1, 2, 3, 4 or exit): ')) #redo subject choice
+        subjectchoice = input(colr('SUBJECT CHOICE (1, 2, 3, 4 or exit): ')) 
     return subjectchoice #returns valid subject choive
 
 def activitychoicefunction(): #Checks if activity choice (content/quiz) is valid
     global activitychoice
     activitychoice = input(colr('SECTION CHOICE (1, 2 or exit): '))
-    while activitychoice not in ['1', '2', 'exit']: #While not valid
+    while activitychoice not in ['1', '2', 'exit']: 
         print('Please enter a valid response - 1, 2 or exit')
-        activitychoice = input(colr('SECTION CHOICE (1, 2 or exit): ')) #redo activity choice
+        activitychoice = input(colr('SECTION CHOICE (1, 2 or exit): ')) 
     return activitychoice #returns valid activity choice
 
 def bar(score,name): #defines the function that displays the bar
@@ -101,7 +101,7 @@ def table(stats): #Creates a table based on stats
         else:
             alignedtime = str(stat[0]).ljust(6) #Aligns nicely - padding
         if attempt > 999:
-            alignedattempt = attempt #At this point honestly i don't think they'll care if the tables messed up
+            alignedattempt = attempt #After 999 attempts honestly i don't think they'll care if the tables messed up.
         else:
             alignedattempt = str(attempt).ljust(3) #Aligns nicely - padding
         print(f'''|  {colr(alignedattempt)}    |  {colr(alignedtime)}  |    {colr(str(stat[1]))}    |
