@@ -290,21 +290,21 @@ physicsqseasy = {
 {colr('b.')} Potential Energy
 {colr('c.')} Physical Energy
 {colr('d.')} Prospective Energy
-''', 'b'),
+''', 'b', 'In physics, PE stands for Potential Energy - e.g GPE, CPE, and EPE'),
 
 '2':(f'''{colr('What does a convection current move within?')}
 {colr('a.')} Solid & Liquid
 {colr('b.')} Liquid & Gas
 {colr('c.')} Solid & Gas
 {colr('d.')} All
-''','b'),
+''','b', 'Conduction moves through solids, while convection moves through liquid and gas'),
 
 '3':(f'''{colr('Which of these are not types of energy?')}
 {colr('a.')} Thermal Energy
 {colr('b.')} Physical PE
 {colr('c.')} Gravitational PE
 {colr('d.')} Light Energy
-''','b')
+''','b', 'Physical Potential Energy does not exist. You may be confusing it with kinetic energy or GPE')
 }
 
 physicsqsmid = {
@@ -313,21 +313,21 @@ physicsqsmid = {
 {colr('b.')} Chemical Energy —→ Electrical Energy
 {colr('c.')} Kinetic Energy —→ Electrical Energy
 {colr('d.')} Electrical Energy —→ Thermal Energy 
-''', 'a'),
+''', 'a', 'The electrical energy is converted into the kinetic energy of the fan blades moving'),
 
 '2':(f'''{colr('What type of energy transformation occurs in a hydroelectric dam?')}
 {colr('a.')} Electrical Energy —→ Kinetic Energy
 {colr('b.')} Chemical Energy —→ Electrical Energy
 {colr('c.')} Kinetic Energy —→ Electrical Energy
 {colr('d.')} Electrical Energy —→ Thermal Energy 
-''','c'),
+''','c', 'The kinetic energy of the water is converted into electrical energy'),
 
 '3':(f'''{colr('What type of energy transformation occurs in a battery')}
 {colr('a.')} Electrical Energy —→ Kinetic Energy
 {colr('b.')} Chemical Energy —→ Electrical Energy
 {colr('c.')} Kinetic Energy —→ Electrical Energy
 {colr('d.')} Electrical Energy —→ Thermal Energy 
-''','b')
+''','b', 'The chemical reactions occuring in a battery cell involve a flow of electrons from one electrode to the other. This creates electrical energy')
 }
 
 physicsqshard = {
@@ -336,21 +336,21 @@ physicsqshard = {
 {colr('b.')} Chemical PE —→ Kinetic Energy
 {colr('c.')} Nuclear Energy —→ Heat Energy + Light Energy
 {colr('d.')} Electrical Energy —→ Heat Energy + Light Energy
-''', 'c'),
+''', 'c', 'Solar energy (energy emitted by the sun - e.g heat + light) is created by nuclear fusion in the sun.'),
 
 '2':(f'''{colr('What type of energy transformation occurs when music plays from a smartphone?')}
 {colr('a.')} Chemical PE  —→ Electrical Energy —→ Kinetic Energy —→ Sound Energy 
 {colr('b.')} Thermal Energy —→ Electrical Energy —→ Sound Energy 
 {colr('c.')} Kinetic Energy —→ Electrical Energy —→ Thermal Energy —→ Sound Energy 
 {colr('d.')} None of the above
-''','a'),
+''','a', 'The battery convertes chemical energy to electrical energy, which vibrates the speakers (kinetic energy) on the smartphone. These vibrations turn into sound energy.'),
 
 '3':(f'''{colr('What type of energy transformation occurs in a coal power plant?')}
 {colr('a.')} Thermal Energy —→ Chemical PE —→ Kinetic Energy —→ Electrical Energy
 {colr('b.')} Chemical PE —→ Thermal Energy —→ Kinetic Energy —→ Electrical Energy
 {colr('c.')} Kinetic Energy —→ Chemical PE —→ Thermal Energy —→ Electrical Energy
 {colr('d.')} None of the above
-''','b')
+''','b', 'The chemical energy of the coal turns into thermal energy. The heat from the coal turns boiling water into steam, which is used to spin turbines (kinetic energy) to create electricity')
 }
 
 bioqseasy = {
@@ -359,21 +359,21 @@ bioqseasy = {
 {colr('b.')} Second Order Consumer
 {colr('c.')} Third Order Consumer
 {colr('d.')} Fourth Order Consumer
-''', 'a'),
+''', 'a', 'Herbivores are First Order Consumers. Carnivores are Second Order Consumers. Top Order Predators are Third Order Consumers. Detritivores are Fourth Order Consumers.'),
 
 '2':(f'''{colr('What order consumer is a top order predator?')}
 {colr('a.')} First Order Consumer
 {colr('b.')} Second Order Consumer
 {colr('c.')} Third Order Consumer
 {colr('d.')} Fourth Order Consumer
-''', 'c'),
+''', 'c', 'Herbivores are First Order Consumers. Carnivores are Second Order Consumers. Top Order Predators are Third Order Consumers. Detritivores are Fourth Order Consumers.'),
 
 '3':(f'''{colr('What order consumer is a detritivore?')}
 {colr('a.')} First Order Consumer
 {colr('b.')} Second Order Consumer
 {colr('c.')} Third Order Consumer
 {colr('d.')} Fourth Order Consumer
-''', 'd')
+''', 'd', 'Herbivores are First Order Consumers. Carnivores are Second Order Consumers. Top Order Predators are Third Order Consumers. Detritivores are Fourth Order Consumers.')
 }
 
 bioqsmid = {
@@ -382,21 +382,21 @@ bioqsmid = {
 {colr('b.')} glucose + oxygen (+ light energy) —→ carbon dioxide + water
 {colr('c.')} oxygen + water (+ light energy) —→ carbon dioxide + glucose
 {colr('d.')} carbon dioxide + glucose (+ light energy) —→ oxygen + water
-''', 'a'),
+''', 'a', "I remember it by remembering the word pcwgo - photosynthesis = carbon dioxide + water —→ glucose + oxygen. I always remember it because it's a bit silly :)."),
 
 '2':(f'''{colr('Which of these are not characteristics of bacteria?')}
 {colr('a.')} Small Size
 {colr('b.')} Absence of cell wall
 {colr('c.')} Flagella
 {colr('d.')} Absence of a membrane-bound nucleus and organelles
-''', 'b'),
+''', 'b', 'Bacteria contain a cell wall. Protozoa have outer membranes called pellicles, while Fungi have a cell wall made of chitin'),
 
 '3':(f'''{colr('Which of these are not characteristics of protozoa?')}
 {colr('a.')} Pellice
 {colr('b.')} Cilia or Flagella
 {colr('c.')} Membrane Bound Organelles
 {colr('d.')} Cell Wall
-''', 'd')
+''', 'd', 'Protozoa do not have a cell wall. Instead, they have a pellicle, which is more flexible')
 }
 
 bioqshard = {
@@ -405,7 +405,7 @@ bioqshard = {
 {colr('b.')} 6CO₂ + 6O₂ → C₂H₁₆O₂ + 6H₂O
 {colr('c.')} CO₂ + 6H₂O → C₆H₂O₆ + O₂
 {colr('d.')} 6CO₂ + 6H₂O → C₂H₁₆O₂ + 6O₂
-''', 'a'),
+''', 'a', "Glucose is C₆H₁₂O₆ (6, 12, 6). Don't stress though - this is mostly just extra reading."),
 
 '2':(f'''{colr('''Staphylococcus is a microorganism about 0.5 – 1.0 μm in diamter.
 It contains a cell wall, but no membrane bound organelles, as it is prokaryotic.
@@ -413,16 +413,16 @@ What type of microorganism is it?''')}
 {colr('a.')} Protozoa
 {colr('b.')} Bacteria
 {colr('c.')} Fungi
-{colr('d.')} Archae
-''', 'b'),
+{colr('d.')} Virus
+''', 'b', 'Bacteria are prokaryotic, while Fungi and Protozoa are not. Viruses are neither eukaryotic nor prookaryotic, because they are not alive.'),
 
 '3':(f'''{colr('''Histoplasma Capsulatum is a eukaryotic microorganism with a cell wall consisting of chitin.
 What type of microorganism is it?''')}
 {colr('a.')} Protozoa
 {colr('b.')} Bacteria
 {colr('c.')} Fungi
-{colr('d.')} Archae
-''', 'c')
+{colr('d.')} Virus
+''', 'c', 'A cell wall made of chitin is a defining feature of fungi')
 }
 
 chemqseasy = {
@@ -431,21 +431,21 @@ chemqseasy = {
 {colr('b.')} Change in Heat
 {colr('c.')} Production of Light
 {colr('d.')} Change in Shape
-''', 'd'),
+''', 'd', 'Change in shape does not indicate that bonds have been broken or formed. It is a physical change, not a chemical change.'),
 
 '2':(f'''{colr('Which of these is not a chemical property?')}
 {colr('a.')} Flammability
 {colr('b.')} Reactivity
 {colr('c.')} Electrical Conductivity
 {colr('d.')} Toxicity
-''', 'c'),
+''', 'c', 'Electrical conductivity is a physical property because the chemical composistion of the substance is not changed. It is merely transmitting energy'),
 
 '3':(f'''{colr('Which of these is not homogenous?')}
 {colr('a.')} Sand
 {colr('b.')} Air
 {colr('c.')} Milk
 {colr('d.')} Saltwater
-''', 'a')
+''', 'a', 'Sand is not homogenous as it is made up of many different types of minerals and rocks in no fixed ratio which can be visibly distinguished')
 }
 
 chemqsmid = {
@@ -454,21 +454,21 @@ chemqsmid = {
 {colr('b.')} Non-Malleable
 {colr('c.')} Electrical Conductor
 {colr('d.')} Silvery-Grey
-''', 'b'),
+''', 'b', 'The rest are properties typically associated with metals'),
 
 '2':(f'''{colr('Which of these is a property of mixtures')}
 {colr('a.')} Contains ≥ 2 elements or compounds
 {colr('b.')} No fixed ratio
 {colr('c.')} Components aren't chemically bonded
 {colr('d.')} All
-''', 'd'),
+''', 'd', 'These are all properties of mixtures'),
 
 '3':(f'''{colr('Which of these is not a type of compound')}
 {colr('a.')} Molecular
 {colr('b.')} Lattice
 {colr('c.')} Atomic
 {colr('d.')} Polymer
-''', 'c')
+''', 'c', 'Atomic Compounds do not exist')
 }
 
 chemqshard = {
@@ -477,21 +477,21 @@ chemqshard = {
 {colr('b.')} Metalloid
 {colr('c.')} Non-Metal
 {colr('d.')} Unknown
-''', 'a'),
+''', 'a', 'Gallium exhibits properties found in most metals - e.g malleability and ductility'),
 
 '2':(f'''{colr('Diamond is a lustrous substance which is a good thermal conductor. It is a')}
 {colr('a.')} Metal
 {colr('b.')} Metalloid
 {colr('c.')} Non-Metal
 {colr('d.')} Unknown
-''', 'c'),
+''', 'c', 'Diamond, despite being both lustrous and a conductor, is simply a form of carbon, a non metal.'),
 
-'3':(f'''{colr('Iodine is a lustrous element that is solid at room temperature. However, there is no sea of delocalised electrons. It is a')}
-{colr('a.')} Metal
-{colr('b.')} Metalloid
-{colr('c.')} Non-Metal
-{colr('d.')} Unknown
-''', 'c')
+'3':(f'''{colr('Which of the following are monatomic')}
+{colr('a.')} Hydrogen
+{colr('b.')} Helium
+{colr('c.')} Oxygen
+{colr('d.')} Nitrogen
+''', 'b', 'Helium, neon and argon, are monatomic  while others (e.g oxygen, hydrogen and nitrogen) are diatomic')
 }
 
 

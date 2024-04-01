@@ -46,7 +46,7 @@ def activitychoicefunction():
     return activitychoice
 
 def bar(score,name): #defines the function that displays the bar
-    newbar = (f'''{name}
+    newbar = (f'''{colr(name)}
 ______{'___'*score}
    {'   '*score} {score} |
 ______{'___'*score} 
@@ -78,7 +78,8 @@ def questions(dict, score): #asks questions from dictionary, checks answer and a
             correct = colr('Correct')
             score = score + 1
         else:
-            correct = colr('Wrong')
+            correct = (f'''{colr('Wrong')}
+{tempqs[qno][2]}''')
         del tempqs[qno] #deletes q. from tempdict so its not asked again in the quiz attempt
         cleartitle()
         print(correct)
