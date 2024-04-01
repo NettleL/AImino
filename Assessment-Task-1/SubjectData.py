@@ -283,7 +283,11 @@ In a chemical change, bonds are broken and formed to make new substances
 '''
 
 
-#QUESTIONS
+# QUESTIONS
+
+# Note: Each dictionary contains three questions. There are three dicts per subject (easy, mid, hard).
+# The key is the number of the question.
+# The value is a tuplet containing the actual question, the answer and the explanation if the user got the question wrong. 
 physicsqseasy = {
 '1':(f'''{colr('What does PE stand for in physics?')}
 {colr('a.')} Particle Energy
