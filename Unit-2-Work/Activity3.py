@@ -82,7 +82,7 @@ class App(ctk.CTk):
         self.noneRadioButton = ctk.CTkRadioButton(self,
                                     text="Prefer not to say",
                                     variable=self.genderVar,
-                                    value="They")
+                                    value="They are")
         self.noneRadioButton.grid(row=2, column=3, padx=20,
                                   pady=20, sticky="ew")
         #Slider Label
