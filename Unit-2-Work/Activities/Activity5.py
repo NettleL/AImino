@@ -54,8 +54,6 @@ def clicked1():
 def clicked0():
     global password
     password = password + '8'
-
-
     
     
 loginScreen.grid_columnconfigure((0, 1, 2, 3, 4), weight=1)
