@@ -115,7 +115,7 @@ def login():
     print(f"Username: {username}\nPassword: {password}")
     
     # Destroy the login window and open the main menu
-    loginScreen.destroy()
+    #loginScreen.destroy()
     open_main_menu(username)
     
 # Create a login button
