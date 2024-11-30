@@ -1,0 +1,15 @@
+INPUT mark
+
+WHILE mark is true:
+    markval = int(mark)
+    CASEWHERE markval evaluates to
+        markval < 50: failure
+        markval >= 50 and markval <60 : DISPLAY D
+        markval >= 60 and markval <70 : DISPLAY C
+        markval >= 70 and markval <80 : DISPLAY B
+        markval >= 80 and markval <90 : DISPLAY A
+        markval >= 90 and markval <101 : DISPLAY A+
+        OTHERWISE : liar
+    END CASEWHERE
+    INPUT mark
+END WHILE
