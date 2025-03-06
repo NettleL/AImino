@@ -6,7 +6,7 @@ viewer = py3Dmol.view(query='pdb:' + pdb_code)
 
 # Other styles - Note: to do multiple styles do addStyle instead of setStyle
 #viewer.setStyle({'cartoon': {'color':'spectrum'}})
-#viewer.setStyle({'sphere': {'radius':1})
+viewer.setStyle({'sphere': {'radius':0.5}})
 #viewer.setStyle({'line': {}})
 #viewer.setStyle({'stick': {}})
 
