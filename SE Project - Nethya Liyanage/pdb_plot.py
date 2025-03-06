@@ -14,6 +14,7 @@ viewer.setStyle({'sphere': {'radius':0.5}})
 
 viewer.zoomTo()
 
+folder_path = 'SE Project - Nethya Liyanage/templates/'
 # Save the visualization to an HTML file
-with open('protein_viewer.html', 'w') as f:
+with open(folder_path + 'protein_viewer.html', 'w') as f:
     f.write(viewer._make_html())
