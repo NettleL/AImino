@@ -42,7 +42,7 @@ def model():
         pdb_data = pdb_file.read()
     
     viewer = py3Dmol.view(data=pdb_data, format="pdb")
-    viewer.setStyle({'sphere': {'radius':0.5}})
+    viewer.setStyle({'cartoon': {'color':'spectrum'}})
     viewer.zoomTo()
     html = viewer._make_html()
     return render_template('plot.html', plot_html=html)
