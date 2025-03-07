@@ -53,8 +53,11 @@
 </script>
 
 <h1>Protein Structure</h1>
-<form action='upload' method='post' enctype='multipart/form-data'>
-  <input type='file' name='file'>
-  <input type='submit' value='Upload'>
+<form action='upload' method='post' enctype='multipart/form-data' class="mt-3">
+  <div class="form-group">
+    <label for="file"> Choose File </label>
+    <input type='file' name='file' class="form-control-file" id="file">
+  </div>  
+  <button type='submit' class='btn btn-primary'>Upload</button>
 </form>
 {% endblock %}
