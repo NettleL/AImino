@@ -1,21 +1,23 @@
 import os
 from flask import Flask, render_template, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
+import py3Dmol
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
-    return render_template('protein_viewer.html')
-
 upload_folder = 'SE Project - Nethya Liyanage/misc'
 allowed_extensions = {'pdb', 'cif'}
-app.config['upload_folder'] = upload_folder
+app.config['UPLOAD_FOLDER'] = upload_folder
+app.config['SECRET_KEY'] = 'manifestninetyninepointninefive'
 
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in allowed_extensions
-    
+        
+@app.route("/")
+def home():
+    return render_template('home.html')
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -28,13 +30,22 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['upload_folder'], filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('model', name=filename))
-    return render_template('protein_viewer.html')
+    return render_template('home.html')
 
 @app.route('/model')
 def model():
-    return render_template('protein_viewer.html')
+    name = request.args.get('name')
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], name)
+    with open(file_path, 'r') as pdb_file:
+        pdb_data = pdb_file.read()
+    
+    viewer = py3Dmol.view(data=pdb_data, format="pdb")
+    viewer.setStyle({'sphere': {'radius':0.5}})
+    viewer.zoomTo()
+    html = viewer._make_html()
+    return render_template('plot.html', plot_html=html)
 
 if __name__ == '__main__':
     app.run(debug=True)
