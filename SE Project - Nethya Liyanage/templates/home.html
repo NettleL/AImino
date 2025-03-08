@@ -7,7 +7,7 @@
 <div class="container">
   <h1 class=mt-5>Protein Structure</h1>
   <div>{{home_html|safe}}</div>
-  <form action='model' method='post' enctype='multipart/form-data' class="mt-3">
+  <form action='{{ url_for('home') }}' method='post' enctype='multipart/form-data' class="mt-3">
     <div class="form-group">
       <label for="file"> Choose File </label>
       <input type='file' name='file' class="form-control-file" id="file">
