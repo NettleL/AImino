@@ -14,8 +14,12 @@ def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in allowed_extensions
         
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/")
 def home():
+    return render_template('home.html')
+
+@app.route("/upload", methods=['GET', 'POST'])
+def upload():
     if request.method == 'POST':
         if 'file' not in request.files:
             flash('No file attached in request')
@@ -34,7 +38,7 @@ def home():
     viewer.setStyle({'sphere': {'radius':0.5}})
     viewer.zoomTo()
     html = viewer._make_html()
-    return render_template('home.html', home_html=html)
+    return render_template('upload.html', upload_html=html)
 
 @app.route('/model')
 def model():
