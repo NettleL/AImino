@@ -16,7 +16,13 @@ def allowed_file(filename):
         
 @app.route("/")
 def home():
-    return render_template('home.html')
+    pdb_code = '6DT1'  # Replace with your PDB code
+
+    viewer = py3Dmol.view(query='pdb:' + pdb_code)
+    viewer.setStyle({'sphere': {'radius':0.5}})
+    viewer.zoomTo()
+    html = viewer._make_html()
+    return render_template('home.html', home_html=html)
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
