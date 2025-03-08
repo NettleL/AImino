@@ -14,18 +14,8 @@ def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in allowed_extensions
         
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def home():
-    pdb_code = '6DT1'  # Replace with your PDB code
-
-    viewer = py3Dmol.view(query='pdb:' + pdb_code)
-    viewer.setStyle({'sphere': {'radius':0.5}})
-    viewer.zoomTo()
-    html = viewer._make_html()
-    return render_template('home.html', home_html=html)
-
-@app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
     if request.method == 'POST':
         if 'file' not in request.files:
             flash('No file attached in request')
@@ -38,7 +28,13 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('model', name=filename))
-    return render_template('home.html')
+        
+    pdb_code = '6DT1'  # Replace with your PDB code
+    viewer = py3Dmol.view(query='pdb:' + pdb_code)
+    viewer.setStyle({'sphere': {'radius':0.5}})
+    viewer.zoomTo()
+    html = viewer._make_html()
+    return render_template('home.html', home_html=html)
 
 @app.route('/model')
 def model():
