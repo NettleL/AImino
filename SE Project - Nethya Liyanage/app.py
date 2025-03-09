@@ -35,7 +35,7 @@ def upload():
         
     pdb_code = '6DT1'  # Replace with your PDB code
     viewer = py3Dmol.view(query='pdb:' + pdb_code)
-    viewer.setStyle({'sphere': {'radius':0.5}})
+    viewer.setStyle({'cartoon': {'color':'spectrum'}})
     viewer.zoomTo()
     html = viewer._make_html()
     return render_template('upload.html', upload_html=html)
