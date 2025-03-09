@@ -3,10 +3,12 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-
-<div class="container">
-  <h1 class=mt-5>Home</h1>
-  <div class='mt-3'>
-    <a href='{{ url_for('upload') }}' class="btn btn-seconday">Upload</a></div>
-</div>
+<!-- Masthead -->
+<header class="masthead text-white text-center py-5 mt-5" style="height: 50vh; width: 100vw; margin: 0; padding: 0; overflow-x: hidden; background-image: url('/static/bg-masthead.png'); background-size: cover; display: flex; align-items: center;">
+  <div class="container">
+      <h1 class="font-weight-bold">AImino</h1>
+      <p class="lead">Protein Structure Prediction Software</p>
+      <a href="{{ url_for('upload') }}" class="btn btn-light btn-lg">Upload</a>
+  </div>
+</header>
 {% endblock %}
