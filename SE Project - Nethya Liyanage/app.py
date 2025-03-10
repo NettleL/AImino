@@ -32,13 +32,7 @@ def upload():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('model', name=filename))
-        
-    pdb_code = '6DT1'  # Replace with your PDB code
-    viewer = py3Dmol.view(query='pdb:' + pdb_code)
-    viewer.setStyle({'cartoon': {'color':'spectrum'}})
-    viewer.zoomTo()
-    html = viewer._make_html()
-    return render_template('upload.html', upload_html=html)
+    return render_template('upload.html')
 
 @app.route('/model')
 def model():
@@ -46,12 +40,7 @@ def model():
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], name)
     with open(file_path, 'r') as pdb_file:
         pdb_data = pdb_file.read()
-    
-    viewer = py3Dmol.view(data=pdb_data, format="pdb")
-    viewer.setStyle({'cartoon': {'color':'spectrum'}})
-    viewer.zoomTo()
-    html = viewer._make_html()
-    return render_template('plot.html', plot_html=html)
+    return render_template('plot.html', pdb_data=pdb_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
