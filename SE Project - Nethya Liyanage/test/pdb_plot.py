@@ -17,6 +17,6 @@ viewer.zoomTo()
 
 folder_path = 'SE Project - Nethya Liyanage/templates/'
 # Save the visualization to an HTML file
-with open(folder_path + 'home.html', 'w') as f:
+with open(folder_path + 'sample_plot.html', 'w') as f:
     f.write(viewer._make_html())
 '''

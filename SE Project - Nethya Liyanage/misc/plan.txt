@@ -1,4 +1,0 @@
-FASTA Data Submission
-Send data to backend server
-Fetch predictions from server
-Provides endpoints to fetch predicted 3d models

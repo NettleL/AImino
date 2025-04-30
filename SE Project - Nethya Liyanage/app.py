@@ -5,7 +5,7 @@ import py3Dmol
 
 app = Flask(__name__)
 
-upload_folder = 'SE Project - Nethya Liyanage/misc'
+upload_folder = 'SE Project - Nethya Liyanage/test'
 allowed_extensions = {'pdb', 'cif'}
 app.config['UPLOAD_FOLDER'] = upload_folder
 app.config['SECRET_KEY'] = 'manifestninetyninepointninefive'
