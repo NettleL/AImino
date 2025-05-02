@@ -16,8 +16,6 @@ RETURN CODES
 3 there are characters in a sequence line other than [A-Za-z]
 '''
 
-from Bio import SeqIO
-
 file_path = 'SE Project - Nethya Liyanage/test/ligase0.fasta'
 seq_id = [] # list of ids of each sequence in fasta file
 seq_count = 0
