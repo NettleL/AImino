@@ -9,7 +9,9 @@ def search(sequence):
     data = {
     'sequence': sequence,
     'database': 'PDB70',
-    'evalue': '0.001' 
+    "hhsuite_in_use": "true",  # Enable HHblits
+    "hmmer_in_use": "false",  # Disable HMMER
+    'EVAL': '0.001'
     # measures statistical significance of sequence alignement.
     # lower evalue means sequence is more significant/similar
     }
