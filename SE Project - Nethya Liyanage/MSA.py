@@ -1,6 +1,7 @@
 import requests
 import time
 import json
+import tarfile
 
 def search(sequence):
     url = "https://bioinformatics.lt/comer/search/api/submit"
@@ -41,15 +42,30 @@ def status(job_id):
     else:
         return None
 
-def results(job_id):
-    url = f"https://bioinformatics.lt/comer/search/api/results_json/{job_id}"
+def zip(job_id):
+    url = f"https://bioinformatics.lt/comer/search/api/results_zip/{job_id}"
     response = requests.get(url)
+    
     if response.status_code == 200:
-        return response.json()
+        tar_filename = 'homo_search_results.tar.gz'
+        
+        with open(tar_filename, 'wb') as file:
+            file.write(response.content)
+        
+        print('Results downloaded successfully')
+        
+        tar_folder = 'tar_folder'
+        with tarfile.open(tar_filename, 'r:gz') as tar:
+            tar.extractall(path=tar_folder, filter ='data')
+        
+        print('Extracted MSA results')
+        
     else:
-        return None
-
+        print("Error retrieving MSA:", response.text)
+        
 def run(sequence):
+    start_time = time.time()
+    
     job_id = search(sequence)
     if job_id:
         while True:
@@ -57,12 +73,11 @@ def run(sequence):
             if status_check == 'finished':
                 print('Complete. Fetching results')
                 
-                result_data = results(job_id)
-                
-                with open('homo_search_results.txt', 'w') as file:
-                    json.dump(result_data, file, indent=4) 
-                return(result_data)
-            
+                results = zip(job_id)
+                end_time = time.time()  # Stop the timer
+                elapsed_time = end_time - start_time
+                print(f"Total time elapsed: {elapsed_time} seconds")
+                return results
             
             elif status_check == 'failed':
                 print('Job failed.')
