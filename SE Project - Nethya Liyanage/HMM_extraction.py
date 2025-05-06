@@ -1,4 +1,6 @@
 import re # Import regular expressions module for pattern matching
+import numpy as np
+import torch
 
 # Note: Residue refers to an amino acid
 
@@ -83,12 +85,33 @@ def parse_hhm(hhm_file):
         index +=1
     return emissions, transitions
 
+def normalise(emission_list, transition_list):
+    laplace_smoothing_factor = 1.0
+    
+    emission_array = np.array(emission_list)
+    transition_array = np.array(transition_list)
+    
+    emission_array += laplace_smoothing_factor
+    transition_array += laplace_smoothing_factor
+    
+    emission_logged = np.log(emission_array + 1e-3)
+    
+    row_sums_emission = emission_logged.sum(axis=1, keepdims=True)
+    row_sums_transition = transition_array.sum(axis=1, keepdims=True)
+    
+    normalised_emission = emission_logged/row_sums_emission
+    normalised_transition = transition_array/row_sums_transition
+    
+    normalised_emission_tensor = torch.tensor(normalised_emission, dtype=torch.float32)
+    normalised_transition_tensor = torch.tensor(normalised_transition, dtype=torch.float32)
+    
+    return normalised_emission_tensor, normalised_transition_tensor
 ef, tf = parse_hhm(r'C:\Users\nethy\OneDrive\Documents\Nethya\School\Year 12\12SE\6-Nethya-Liyanage\SE Project - Nethya Liyanage\test\hhm.hhm')
-
+nef, ntf = normalise(ef, tf)
 print('Emission')
-print(ef)
+print(nef)
 print('Transition')
-print(tf)
+print(ntf)
             
             
             
