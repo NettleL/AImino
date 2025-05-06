@@ -1,4 +1,6 @@
 import subprocess
+# WSL DEPENDENCY!!!
+# HHSUITE DEPENDENCY!!!
 
 def hmm(input_file):
     linux_input_file = input_file.replace("\\", "/").replace("C:/", "/mnt/c/")
@@ -14,4 +16,4 @@ def hmm(input_file):
     else:
         print('Error in conversion:', result.stderr)
 
-hmm(r"C:\Users\nethy\OneDrive\Documents\Nethya\School\Year 12\12SE\6-Nethya-Liyanage\tar_folder\VQPPEgQjjsEE__0\VQPPEgQjjsEE__0_resulthhs.afa")
+hmm(r"C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE Project - Nethya Liyanage\tar_folder\VQPPEgQjjsEE__0\VQPPEgQjjsEE__0_resulthhs.afa")
