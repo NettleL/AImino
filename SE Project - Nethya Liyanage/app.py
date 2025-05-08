@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-upload_folder = 'SE Project - Nethya Liyanage/test'
+upload_folder = r'C:\Users\nethy\OneDrive\Documents\Nethya\School\Year 12\12SE\6-Nethya-Liyanage\SE Project - Nethya Liyanage\test'
 allowed_extensions = {'pdb', 'cif'}
 app.config['UPLOAD_FOLDER'] = upload_folder
 app.config['SECRET_KEY'] = 'manifestninetyninepointninefive'
