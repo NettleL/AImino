@@ -9,7 +9,7 @@ def one_hot_encoding(fasta_file_path):
             if not line.startswith('>'):
                 sequence += line.strip()
     
-    amino_acids = 'ABCDEFGHIKLMNPQRSTVWYZ' # Added B & Z (special cases)
+    amino_acids = 'ACDEFGHIKLMNPQRSTVWY'
     identity_matrix = np.eye(len(amino_acids))
     encoding_dict ={}
     
@@ -32,5 +32,5 @@ def one_hot_encoding(fasta_file_path):
     
     return encoded_sequence_tensor
 
-print(one_hot_encoding(r'C:\Users\nethy\OneDrive\Documents\Nethya\School\Year 12\12SE\6-Nethya-Liyanage\SE Project - Nethya Liyanage\test\ligase0.fasta'))
+print(one_hot_encoding(r'C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE_Project_Nethya_Liyanage\test\ligase0.fasta'))
     

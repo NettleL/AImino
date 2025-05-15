@@ -16,4 +16,4 @@ def hmm(input_file):
     else:
         print('Error in conversion:', result.stderr)
 
-hmm(r"C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE Project - Nethya Liyanage\tar_folder\VQPPEgQjjsEE__0\VQPPEgQjjsEE__0_resulthhs.afa")
+hmm(r"C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE_Project_Nethya_Liyanage\tar_folder\VQPPEgQjjsEE__0\VQPPEgQjjsEE__0_resulthhs.afa")
