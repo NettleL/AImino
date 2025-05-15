@@ -106,7 +106,7 @@ def normalise(emission_list, transition_list):
     normalised_transition_tensor = torch.tensor(normalised_transition, dtype=torch.float32)
     
     return normalised_emission_tensor, normalised_transition_tensor
-ef, tf = parse_hhm(r'C:\Users\nethy\OneDrive\Documents\Nethya\School\Year 12\12SE\6-Nethya-Liyanage\SE Project - Nethya Liyanage\test\hhm.hhm')
+ef, tf = parse_hhm(r'C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE_Project_Nethya_Liyanage\test\hhm.hhm')
 nef, ntf = normalise(ef, tf)
 print('Emission')
 print(nef)
