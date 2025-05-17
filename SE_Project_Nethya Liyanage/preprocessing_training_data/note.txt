@@ -1,0 +1,21 @@
+All the programs & processes under preprocessing_trainind_data
+were carried out under a VM virtual machine.
+This was so I could have enough computing power to download, process + refine 21 GB of training data
+I used a WSL for some parts, and thus some absolute paths will be in linux
+
+The data I downloaded was (for 15051 proteins)
+- FASTA file
+- MSAs + Secondary Strucutres (21 GB)
+- PDBs
+
+I downloaded the data on the VM
+I extracted the FASTA file containing sequence of 15051 proteins (extract.py)
+I removed similar sequences (misc_cmd_prompts.txt)
+I removed excessively long files that may lead to higher computational times (len_refinement.py)
+
+I extracted a list of the files in the 21 GB folder of MSAs (misc_cmd_prompts.txt)
+I extracted one single NPZ file to determine what it contained (misc_cmd_prompts.txt)
+
+FINAL Parameters
+Similarity Parameter - 0.7
+Length Parameter - 60
