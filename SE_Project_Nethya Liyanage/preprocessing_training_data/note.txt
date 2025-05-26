@@ -1,3 +1,5 @@
+
+
 All the programs & processes under preprocessing_training_data
 were carried out by a VM virtual machine.
 This was so I could have enough computing power to download, process + refine 21 GB of training data
@@ -10,12 +12,17 @@ The data I downloaded was (for 15051 proteins)
 
 Process was as followed
 - I downloaded the data on the VM
-- I extracted the FASTA file containing sequence of 15051 proteins (extract.py)
-- I removed similar sequences (misc_cmd_prompts.txt)
-- I removed excessively long files that may lead to higher computational times (len_refinement.py)
+- I extracted the FASTA file containing sequence of 15051 proteins (extract_tar.py)
+- Refining Using Fasta File
+    - I removed similar sequences with 0.7 similarity parameter (misc_cmd_prompts.txt)
+    - I removed excessively long files that may lead to higher computational times with a 60 length parameter (len_refinement.py)
 - I extracted a list of the files in the 21 GB folder of MSAs (misc_cmd_prompts.txt)
 - I extracted one single NPZ file to determine what it contained (misc_cmd_prompts.txt)
+- I created a list of the files in the refined list of 6000 fasta sequences (fasta_list.py)
+- I extracted the 6000 npzs associated with the 6000 fasta files in the fasta_list (extract_npz.py) - it took 1.78 hours
+- I extracted the 6000 pdbs assocaited with the 6000 fasta files in the fasta_list (slightly altering the extract_npz.py)
+- Issue - only 5999 files for the npz though there should be 6000. After a lot of checking I found out both folder were missing "3cc2_1_B" - do not know why. need to fix
+    - deleting two files (1 pdb + 1 npz) so I don't need to deal with issues
+- I extracted the relevant information from each of the npzs(extract_features_from_npz.py)
 
-FINAL Parameters Used
-Similarity Parameter - 0.7 (misc_cmd_prompts.txt)
-Length Parameter - 60 - len_refinement.py
+

@@ -1,7 +1,7 @@
 import random
 from Bio import SeqIO
 
-input_file = '/mnt/c/Users/cgwl/Documents/AImino_Training/training_data/len_ref/7p_s.fasta'
+input_file = '/mnt/c/Users/cgwl/Documents/AImino_Training/training_data/len_ref/7p_s.fasta' # FASTA file with 
 output_file = '/mnt/c/Users/cgwl/Documents/AImino_Training/training_data/final.fasta'
 target_count = 6000
 
