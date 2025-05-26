@@ -10122,7 +10122,6 @@ npz/4ml0_1_A.npz
 npz/3gux_1_A.npz
 npz/2psp_1_A.npz
 npz/4hwi_1_B.npz
-npz/3cc2_1_B.npz
 npz/3jyy_1_B.npz
 npz/3vfc_1_B.npz
 npz/1eqz_1_B.npz
