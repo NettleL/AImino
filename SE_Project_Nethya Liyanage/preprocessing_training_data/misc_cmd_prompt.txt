@@ -1,12 +1,12 @@
-CD-HIT - FILTER FASTAS BY SIMILARITY
+3. CD-HIT - FILTER FASTAS BY SIMILARITY
 cd-hit -i /mnt/c/Users/cgwl/Documents/AImino_Training/training_data/cd_hit_ref.py/15051.fasta -o /mnt/c/Users/cgwl/Documents/AImino_Training/training_data/cd_hit_ref.py/9p.fasta -c 0.7
 
-FIND HOW MANY FASTAS IN A FILE
-grep -c "^>" /mnt/c/Users/cgwl/Documents/AImino_Training/training_data/cd_hit_ref/15051.fasta
-(Replace with file name)
-
-TO EXTRACT LIST OF FILES FROM NPZ
+4. TO EXTRACT LIST OF FILES FROM NPZ
 tar -tjf /mnt/c/Users/cgwl/Downloads/npz.tar.bz2 > msas_list.txt
 
-TO EXTRACT SINGLE NPZ FILE
+5. TO EXTRACT SINGLE NPZ FILE
 tar -xjf /mnt/c/Users/cgwl/Downloads/npz.tar.bz2 -C /mnt/c/Users/cgwl/Documents/AImino_Training/training_data npz/3e9c_1_A.npz
+
+Misc. FIND HOW MANY FASTAS IN A FILE
+grep -c "^>" /mnt/c/Users/cgwl/Documents/AImino_Training/training_data/cd_hit_ref/15051.fasta
+(Replace with file name)
