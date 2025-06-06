@@ -30,4 +30,4 @@ Process was as followed
 13. Padded arrays to same dimensions (pad.py)
     - Dataset became 7G - therefore I removed sequences larger than 350 sequences & padded to 350 (instead of 600)
     - Dataset became 2G
-14. DUe to some issues training the model, I used plot_dist_ca.py to plot the distance map to determine any errors
+14. Due to some issues training the model, I used plot_dist_ca.py to plot the distance map to determine any errors
