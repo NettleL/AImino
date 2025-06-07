@@ -79,10 +79,10 @@ def main():
     
     model.eval()
     
-    test_ds = torch.load(r'C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE_Project_Nethya_Liyanage\training_data\test_dataset.pt', weights_only=False)
+    test_ds = torch.load(r'C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE_Project_Nethya_Liyanage\training_data\final_test_dataset.pt', weights_only=False)
     for i in range(5):    
         sample = test_ds[i] # CHANGE PROTEIN HERE
-        test_input, test_mask, test_target = sample
+        protein_seq, test_input, test_mask, test_target = sample
         
         # Add a batch dimension and send tensors to the proper device
         test_input = test_input.unsqueeze(0).to(device).float()    # shape: (1, L, features)

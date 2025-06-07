@@ -33,6 +33,10 @@ def upload():
             return redirect(url_for('model', name=filename))
     return render_template('upload.html')
 
+@app.route('/predict')
+def predict():
+    return render_template('predict.html')
+
 @app.route('/model')
 def model():
     name = request.args.get('name')
