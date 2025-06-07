@@ -257,16 +257,16 @@ if __name__ == "__main__":
 
     # Build full_dataset (tuples) from every protein entry
     full_dataset = []
-    for p in data:
-        input_tensor = data[p]['input']
-        mask_tensor = data[p]['mask1d'].clone().detach() # creates copy + removes tracking gradients
-        target_tensor = data[p]['target']
-        full_dataset.append((input_tensor, mask_tensor, target_tensor))
+    for protein_seq, protein_data in data.items():
+        input_tensor = protein_data['input']
+        mask_tensor = protein_data['mask1d'].clone().detach() # creates copy + removes tracking gradients
+        target_tensor = protein_data['target']
+        full_dataset.append((protein_seq, input_tensor, mask_tensor, target_tensor))
     print("Built full_dataset with", len(full_dataset), "entries.")
 
     # Unnecessary (but keep just in case) - handles variable-length data (though data is already padded)
     def collate_fn(batch):
-        inputs, masks, targets = zip(*batch)
+        sequences, inputs, masks, targets = zip(*batch)
         return list(inputs), list(masks), list(targets)
 
     total = len(full_dataset)
@@ -274,7 +274,11 @@ if __name__ == "__main__":
     valid_n = int(0.19 * total)
     test_n = total - train_n - valid_n
     train_ds, valid_ds, test_ds = random_split(full_dataset, [train_n, valid_n, test_n])
-    torch.save(test_ds, '/kaggle/working/test_dataset.pt')
+    
+
+    refined_test_dataset = [test_ds[i] for i in range(len(test_ds))] # list comprehension :)
+
+    torch.save(refined_test_dataset, '/kaggle/working/test_dataset_yay.pt')
     
     print(f"Dataset split into train: {train_n}, valid: {valid_n}, test: {test_n}")
 
