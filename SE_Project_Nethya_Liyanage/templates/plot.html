@@ -25,6 +25,9 @@
         </label>
     </form>
 </div>
+<div class="text-center">
+    <a href="{{ url_for('upload') }}" class="btn btn-light btn-lg"> Search </a>
+</div>
 
 <script src="https://3dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
 
@@ -50,4 +53,5 @@
         viewer.render();
     }
 </script>
-{% endblock %}
+
+{% endblock%}
