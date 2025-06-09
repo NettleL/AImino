@@ -8,10 +8,18 @@ from aimino.aimino import ProteinStructureModel
 from aimino.plot import classical_mds, pearsons_corr_coef, plot
 app = Flask(__name__)
 
-upload_folder = r'C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE_Project_Nethya_Liyanage\test'
-allowed_extensions = {'pdb', 'cif'}
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+default_upload_folder = os.path.join(basedir, 'uploads')
+upload_folder = os.environ.get('UPLOAD_FOLDER', default_upload_folder)
 app.config['UPLOAD_FOLDER'] = upload_folder
-app.config['SECRET_KEY'] = 'manifestninetyninepointninefive'
+
+if not os.path.exists(upload_folder):
+    os.makedirs(upload_folder)
+
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'manifestninetyninepointninefive')
+
+allowed_extensions = {'pdb', 'cif'}
 
 model = None
 data_dict = None
