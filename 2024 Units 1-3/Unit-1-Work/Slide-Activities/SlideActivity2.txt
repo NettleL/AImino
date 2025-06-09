@@ -1,8 +1,0 @@
-INPUT int number
-numberfac = number
-WHILE number != 1
-    number = number - 1
-    numberfac = numberfac * number
-END WHILE
-    
-DISPLAY numberfac
