@@ -1,11 +1,7 @@
 import os
-import io
-import base64
-import json
 from flask import Flask, render_template, flash, request, redirect, url_for, jsonify
 from werkzeug.utils import secure_filename
 import torch
-import json
 import torch.nn.functional as F
 
 from aimino.aimino import ProteinStructureModel
