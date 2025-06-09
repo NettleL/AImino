@@ -58,6 +58,8 @@ def load_model_dict(): # caching
     except Exception as e:
         print('Failed to load model:', e)
 
+load_model_dict()
+
 @app.route("/")
 def home():
     return render_template('home.html')
@@ -127,6 +129,5 @@ def plot_model():
     return render_template('plot.html', pdb_data=pdb_data)
 
 if __name__ == '__main__':
-    load_model_dict()
     app.run(debug=True)
     
