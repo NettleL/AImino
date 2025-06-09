@@ -6,6 +6,7 @@ import torch.nn.functional as F
 
 from aimino.aimino import ProteinStructureModel
 from aimino.plot import classical_mds, pearsons_corr_coef, plot
+
 app = Flask(__name__)
 
 
@@ -22,25 +23,23 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'manifestninetyninepoint
 allowed_extensions = {'pdb', 'cif'}
 
 model = None
-data_dict = None
+
+base_dir = os.path.dirname(os.path.abspath(__file__)) # where app.py is located
 
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in allowed_extensions
-       
-def load_model_dict(): # caching 
-    global model, data_dict
-    base_dir = os.path.dirname(os.path.abspath(__file__)) # where app.py is located
-    
+
+def get_data(key):
     data_path = os.path.join(base_dir, "aimino", "final_test_dataset.pt")
+    with open(data_path, "rb") as f:
+        data_dict = torch.load(f, map_location="cpu")
+    return next((sample for sample in data_dict if sample[0] == key), None)
+def load_model_dict(): # caching 
+    global model
+    
     model_path = os.path.join(base_dir, "aimino", "final_trained_model_cpu.pt")
     
-    try:
-        data_dict = torch.load(data_path)
-        print('Data dictionary cached')
-    except Exception as e:
-        print('Failed to load dictionary:', e)
-
     try:
         model_instance = ProteinStructureModel(
             input_dim=427,
@@ -58,8 +57,6 @@ def load_model_dict(): # caching
         print('Model cached')
     except Exception as e:
         print('Failed to load model:', e)
-
-load_model_dict()
 
 @app.route("/")
 def home():
@@ -87,84 +84,39 @@ def search():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    global model, data_dict
+    global model
     data = request.get_json()
+    if data is None:
+        return jsonify({"error": "Invalid request payload"}), 400
+    
     key = data.get('key', None)
     if key is None or key.strip() == '':
         return jsonify({"error": "No key provided"}), 400
 
-    if data_dict is None:
-        return jsonify({"error": "Data dictionary not loaded"}), 400
-    
-    key_data = None
-    for sample in data_dict:
-        protein_seq, test_input, test_mask, test_target = sample
-        if protein_seq == key:
-            key_data = {
-                "input": test_input,
-                "mask": test_mask,
-                "target": test_target
-                }
-            break
-
+    key_data = get_data(key)
     if key_data is None:
         return jsonify({"error": "Key not found in dataset"}), 400
 
-    input_data = key_data.get("input")
-    ground_truth = key_data.get("target")
-    
-    if input_data is None or ground_truth is None:
-        return jsonify({"error": "Incomplete data for key"}), 400
+    protein_seq, test_input, test_mask, test_target = key_data
 
-    if model is None:
-        return jsonify({"error": "Model not loaded"}), 400
-        
-    try:
-        if isinstance(input_data, torch.Tensor):
-            tensor_input = input_data.clone().detach()
-        else:
-            tensor_input = torch.tensor(input_data)
-        tensor_input = tensor_input.unsqueeze(0).float()
-    except Exception as e:
-        return jsonify({"error": f"Error converting input to tensor: {e}"}), 400
-    
-    try:
-        if isinstance(key_data["mask"], torch.Tensor):
-            tensor_mask = key_data["mask"].clone().detach()
-        else:
-            tensor_mask = torch.tensor(key_data["mask"])
-        tensor_mask = tensor_mask.unsqueeze(0)
-    except Exception as e:
-        return jsonify({"error": f"Error converting mask to tensor: {e}"}), 400
-    
+    tensor_input = test_input.detach().clone().unsqueeze(0).float()
+    tensor_mask = test_mask.detach().clone().unsqueeze(0).float()
+
     with torch.no_grad():
-        try:
-            output = model(tensor_input, tensor_mask)
-            if isinstance(output, tuple):
-                dist_ca_map_pred = output[0]
-            else:
-                dist_ca_map_pred = output
-        except Exception as e:
-            print("Model Prediction Error:", e) 
-            return jsonify({"error": f"Error during model prediction {e}"}), 400
-    try:
-        if isinstance(ground_truth, torch.Tensor):
-            tensor_target = ground_truth.clone().detach()
-        else:
-            tensor_target = torch.tensor(ground_truth)
-        tensor_target = tensor_target.unsqueeze(0).float()
-    except Exception as e:
-        return jsonify({"error": f"Error converting target to tensor: {e}"}), 400
-        
+        output = model(tensor_input, tensor_mask)
+        dist_ca_map_pred = output[0] if isinstance(output, tuple) else output
+
+    tensor_target = test_target.detach().clone().unsqueeze(0).float()
+
     rmse = torch.sqrt(F.mse_loss(dist_ca_map_pred, tensor_target)).item()
     pearson = pearsons_corr_coef(dist_ca_map_pred, tensor_target).item()
 
-    pred_np = dist_ca_map_pred.squeeze(0).cpu().numpy()
-    target_np = tensor_target.squeeze(0).cpu().numpy()
+    plot_image = plot(dist_ca_map_pred.squeeze(0).cpu().numpy(),
+                      tensor_target.squeeze(0).cpu().numpy(),
+                      rmse, pearson)
 
-    plot_image = plot(pred_np, target_np, rmse, pearson)
-    
     return render_template('predict.html', rmse=rmse, pearson=pearson, plot_image=plot_image)
+
 
 @app.route('/model')
 def plot_model():
@@ -175,5 +127,6 @@ def plot_model():
     return render_template('plot.html', pdb_data=pdb_data)
 
 if __name__ == '__main__':
+    load_model_dict()
     app.run(debug=True)
     
