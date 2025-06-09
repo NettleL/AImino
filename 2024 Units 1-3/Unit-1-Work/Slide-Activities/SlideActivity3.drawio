@@ -1,0 +1,63 @@
+<mxfile host="app.diagrams.net" modified="2024-02-25T12:57:19.598Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="1hRWiJrs70XWJxsv63yK" version="23.1.6" type="github">
+  <diagram name="Page-1" id="lz7aKfZM8ka2UkIeOlsJ">
+    <mxGraphModel dx="1273" dy="826" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hyCEzLs9Vba6t-eAaWOQ-2" target="hyCEzLs9Vba6t-eAaWOQ-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-2" value="BEGIN" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="344" y="70" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hyCEzLs9Vba6t-eAaWOQ-3" target="hyCEzLs9Vba6t-eAaWOQ-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-3" value="INPUT int temperature" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="344" y="180" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hyCEzLs9Vba6t-eAaWOQ-4" target="hyCEzLs9Vba6t-eAaWOQ-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-4" value="INPUT units &lt;br&gt;(Celsius or&lt;br&gt;&amp;nbsp;Fahrenheit)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="344" y="280" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hyCEzLs9Vba6t-eAaWOQ-5" target="hyCEzLs9Vba6t-eAaWOQ-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hyCEzLs9Vba6t-eAaWOQ-5" target="hyCEzLs9Vba6t-eAaWOQ-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-5" value="IF unit ==" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="349" y="370" width="130" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-7" value="DISPLAY &quot;TEMPERATURE (⁰F):&quot;,&amp;nbsp; ((temp * 1.8) + 32)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="450" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-9" value="DISPLAY &quot;TEMPERATURE (⁰C):&quot;,&amp;nbsp; ((temp-32) / 1.8)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="520" y="450" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-17" value="Celsius" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="240" y="390" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-18" value="Fahrenheit" style="text;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="530" y="390" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-19" value="END" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="344" y="560" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="hyCEzLs9Vba6t-eAaWOQ-9" target="hyCEzLs9Vba6t-eAaWOQ-19">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="490" y="590" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="630" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hyCEzLs9Vba6t-eAaWOQ-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="hyCEzLs9Vba6t-eAaWOQ-7" target="hyCEzLs9Vba6t-eAaWOQ-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
