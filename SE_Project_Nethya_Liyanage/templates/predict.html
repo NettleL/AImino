@@ -13,14 +13,25 @@
 
 <div style='padding: 20px;'>
     <img src="data:image/png;base64,{{ plot_image }}" alt="Plot">
-  <br>
-  <h1> Stats </h1>
-  <br>
-  <p> RMSE:                              {{ rmse }}</p>
-  <p> Pearson Correlation Coefficient:   {{ pearson }}</p>
-  <br>
-  <div class="text-center">
-    <a href="{{ url_for('search') }}" class="btn btn-light btn-lg"> Search </a>
-  </div>
+    <br>
+    <h1> Stats </h1>
+    <br>
+    <p> RMSE:                              {{ rmse }}</p>
+    <p> Pearson Correlation Coefficient:   {{ pearson }}</p>
+    <br>
+    <h1> Downloads </h1>
+    <div class="text-center">
+        <a href="{{ url_for('static', filename='uploads/' + npz_filename) }}" download="{{ npz_filename }}" class="btn btn-light btn-lg">
+        Download NPZ File
+        </a>
+        
+        <a href="{{ url_for('static', filename='uploads/' + pdb_filename) }}" download="{{ pdb_filename }}" class="btn btn-light btn-lg">
+        Download PDB File
+        </a>
+    </div>
+    <br>
+    <div class="text-center">
+        <a href="{{ url_for('search') }}" class="btn btn-light btn-lg"> Search </a>
+    </div>
 </div>
 {% endblock %}
