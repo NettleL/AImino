@@ -7,7 +7,7 @@ import numpy as np
 
 from aimino.aimino import ProteinStructureModel
 from aimino.plot_prot import pearsons_corr_coef, plot, classical_mds
-from aimino.download import create_npz_file, create_pdb_file
+from aimino.download import create_npz_file
 app = Flask(__name__)
 
 
@@ -125,11 +125,9 @@ def predict():
                       tensor_target.squeeze(0).cpu().numpy(),
                       rmse, pearson)
     
-     # Calculate 3D coordinates using classical MDS
     xyz_pred = classical_mds(dist_ca_map_pred.squeeze(0).cpu().numpy())
     xyz_target = classical_mds(tensor_target.squeeze(0).cpu().numpy())
 
-    # Use create_npz_file to generate and save the NPZ file.
     npz_filename = create_npz_file(
         dist_pred=dist_ca_map_pred.squeeze(0).cpu().numpy(),
         dist_target=tensor_target.squeeze(0).cpu().numpy(),
@@ -137,19 +135,11 @@ def predict():
         xyz_target=xyz_target,
         key=key
     )
-    
-    # Generate the PDB file using create_pdb_file.
-    pdb_string = create_pdb_file(dist_ca_map_pred.squeeze(0).cpu().numpy())
-    pdb_filename = f"{key}_pred.pdb"
-    pdb_path = os.path.join(app.config['DOWNLOAD_FOLDER'], pdb_filename)
-    with open(pdb_path, 'w') as f:
-        f.write(pdb_string)
-    
+
     return render_template('predict.html', 
                            rmse=rmse, 
                            pearson=pearson, 
                            plot_image=plot_image,
-                           pdb_filename=pdb_filename,
                            npz_filename=npz_filename)
     
 @app.route('/model')

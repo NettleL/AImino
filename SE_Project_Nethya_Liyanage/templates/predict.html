@@ -20,13 +20,9 @@
     <p> Pearson Correlation Coefficient:   {{ pearson }}</p>
     <br>
     <h1> Downloads </h1>
-    <div class="text-center">
+    <div>
         <a href="{{ url_for('static', filename='downloads/' + npz_filename) }}" download="{{ npz_filename }}" class="btn btn-light btn-lg">
         Download NPZ File
-        </a>
-        
-        <a href="{{ url_for('static', filename='downloads/' + pdb_filename) }}" download="{{ pdb_filename }}" class="btn btn-light btn-lg">
-        Download PDB File
         </a>
     </div>
     <br>
