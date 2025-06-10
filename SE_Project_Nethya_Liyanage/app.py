@@ -5,7 +5,7 @@ import torch
 import torch.nn.functional as F
 
 from aimino.aimino import ProteinStructureModel
-from aimino.plot import classical_mds, pearsons_corr_coef, plot
+from aimino.plot import pearsons_corr_coef, plot
 
 app = Flask(__name__)
 

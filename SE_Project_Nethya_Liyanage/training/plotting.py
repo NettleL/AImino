@@ -1,8 +1,15 @@
+import sys
+import os
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
 import torch.nn.functional as F
 from mpl_toolkits.mplot3d import Axes3D  # registers the 3D projection
+
+aimino_path = os.path.abspath(r"C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE_Project_Nethya_Liyanage\aimino")
+sys.path.append(aimino_path)
+
+# Now try importing
 from aimino import ProteinStructureModel
 
 
@@ -78,7 +85,7 @@ def main():
     
     model.eval()
     
-    test_ds = torch.load(r'C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE_Project_Nethya_Liyanage\training_data\final_test_dataset.pt', weights_only=False)
+    test_ds = torch.load(r'C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE_Project_Nethya_Liyanage\aimino\final_test_dataset.pt', weights_only=False)
     for i in range(5):    
         sample = test_ds[i] # CHANGE PROTEIN HERE
         protein_seq, test_input, test_mask, test_target = sample
@@ -107,14 +114,14 @@ def main():
                 
         print('RMSE:', rmse_loss.item())
         print('Pearsons Coefficient:', pearsons_corr.item())
-
+        
         
         # Convert outputs to np + remove batch dimension (for visualization)
         dist_ca_map_pred_np = dist_ca_map_pred.squeeze(0).cpu().numpy()
         test_target_np      = test_target.squeeze(0).cpu().numpy()
 
         # PLOTTING 2D MAPS
-            
+
         fig, axes = plt.subplots(1, 2, figsize=(16, 6))
                 
         im0 = axes[0].imshow(dist_ca_map_pred_np, cmap='viridis', origin='lower')

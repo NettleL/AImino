@@ -1,3 +1,0 @@
-Git LFS must be installed on the machine before cloning the repo.
-
-The actual file must be downloaded via: git lfs pull
