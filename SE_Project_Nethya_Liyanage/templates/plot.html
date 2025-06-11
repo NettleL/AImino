@@ -32,6 +32,7 @@
 <script src="https://3dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
 
 <script>
+    // 3D Plot Viewer
     const viewer = $3Dmol.createViewer("viewer3d", {defaultcolors: $3Dmol.rasmolElementColors});
     viewer.addModel(`{{ pdb_data | safe }}`, "pdb");
     viewer.setStyle({cartoon: {color: "spectrum"}});

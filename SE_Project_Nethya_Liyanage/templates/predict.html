@@ -3,6 +3,7 @@
 {% block title %} Predict {% endblock %}
 
 {% block style %}
+<!-- Gradient Divider Around Clear Folder -->
 hr.gradient {
   height: 3px;
   border: none;
@@ -58,7 +59,7 @@ hr.gradient {
 <script>
 function downloadNPZ(){
     const filename = "{{ npz_filename }}";
-    const timestamp = new Date().getTime()
+    const timestamp = new Date().getTime() // so each fetch has unique identifier (prevents issues)
     fetch("/download/" + filename + '?t=' + timestamp)
     .then(function(response) {
        if (!response.ok) {
