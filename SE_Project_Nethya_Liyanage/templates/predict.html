@@ -2,15 +2,26 @@
 
 {% block title %} Predict {% endblock %}
 
-{% block masthead_title %} Predict {% endblock %}
-
-{% block masthead_button %}
-
+{% block style %}
+hr.gradient {
+  height: 3px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgb(70, 10, 116) 0%,
+    rgba(9, 9, 121, 1) 21%,
+    rgb(11, 139, 90) 51%,
+    rgb(200, 203, 21) 100%
+  );
+}
 {% endblock %}
 
-{% block content %}
-<div id="error-message" style="padding: 20px;"></div>
+{% block masthead_title %} Predict {% endblock %}
 
+{% block masthead_button %} {% endblock %}
+
+{% block content %}
 <div style='padding: 20px;'>
     <img src="data:image/png;base64,{{ plot_image }}" alt="Plot">
     <br>
@@ -20,14 +31,75 @@
     <p> Pearson Correlation Coefficient:   {{ pearson }}</p>
     <br>
     <h1> Downloads </h1>
+    <p>
+        When you press <i>Download NPZ File</i>, you may choose to <i>Save</i> or <i>Save As</i>.
+        <i>Save</i> will save the .npz to /static/downloads - the .npz will be deleted if you press <i>Clear</i>.
+        Therefore we recommend you <i>Save As</i> to your own personal folder if you want to save the .npz file.
+    </p>
+    <div id="error-message"></div>
     <div>
-        <a href="{{ url_for('static', filename='downloads/' + npz_filename) }}" download="{{ npz_filename }}" class="btn btn-light btn-lg">
-        Download NPZ File
-        </a>
+        <button class="btn btn-light btn-lg" onclick="downloadNPZ()">Download NPZ File</button>
+    </div>
+    <br>
+    <div>
+        <hr class="gradient">
+        <button class='btn btn-light btn-lg' onclick='deleteFiles()'>
+        Clear All Files
+        </button>
+        {% if error %} <div class="alert alert-secondary" role="alert"> {{ error }} </div> {% endif %}
+        <hr class="gradient">
     </div>
     <br>
     <div class="text-center">
         <a href="{{ url_for('search') }}" class="btn btn-light btn-lg"> Search </a>
     </div>
 </div>
+
+<script>
+function downloadNPZ(){
+    const filename = "{{ npz_filename }}";
+    fetch("/download/" + filename)
+    .then(function(response) {
+       if (!response.ok) {
+           return response.json().then(function(result) {
+               throw new Error(result.error);
+           });
+       }
+       return response.blob();
+    })
+    .then(function(blob) {
+         const url = window.URL.createObjectURL(blob);
+         const a = document.createElement('a');
+         a.style.display = 'none';
+         a.href = url;
+         a.download = filename;
+         document.body.appendChild(a);
+         a.click();
+         window.URL.revokeObjectURL(url);
+    })
+    .catch(function(error) {
+         document.getElementById('error-message').innerHTML =
+              `<div class="alert alert-secondary">${error.message}</div>`;
+    });
+}
+
+function deleteFiles() {
+    fetch('/delete-files', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                document.getElementById('error-message').innerHTML =
+                    `<div class="alert alert-secondary">${data.error}</div>`;
+            } else {
+                document.getElementById('error-message').innerHTML =
+                    `<div class="alert alert-light">${data.message}</div>`;
+            }
+        })
+        .catch(error => {
+            document.getElementById('error-message').innerHTML =
+                `<div class="alert alert-secondary">Failed to communicate with server.</div>`;
+            console.error('Error:', error);
+        });
+}
+</script>
 {% endblock %}

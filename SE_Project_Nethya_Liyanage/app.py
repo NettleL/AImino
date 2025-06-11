@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, flash, request, redirect, url_for, jsonify
+from flask import Flask, render_template, flash, request, redirect, url_for, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 import torch
 import torch.nn.functional as F
@@ -43,6 +43,7 @@ def get_data(key):
     with open(data_path, "rb") as f:
         data_dict = torch.load(f, map_location="cpu")
     return next((sample for sample in data_dict if sample[0] == key), None)
+
 def load_model_dict(): # caching 
     global model
     
@@ -135,12 +136,38 @@ def predict():
         xyz_target=xyz_target,
         key=key
     )
-
+    
     return render_template('predict.html', 
                            rmse=rmse, 
                            pearson=pearson, 
                            plot_image=plot_image,
-                           npz_filename=npz_filename)
+                           npz_filename=npz_filename,
+                           error = '')
+
+@app.route('/download/<filename>')
+def download_file(filename):
+    npz_filepath = os.path.join(app.config['DOWNLOAD_FOLDER'], filename)
+    if os.path.exists(npz_filepath):
+        return send_from_directory(app.config['DOWNLOAD_FOLDER'], filename, as_attachment=True)
+    else:
+        return jsonify({"error": "File cleared. Cannot download."}), 410
+
+@app.route('/delete-files',methods=['POST'])   
+def delete_files():
+    try:
+        files = os.listdir(download_folder)
+        if not files:
+            return jsonify({"message": "No files to delete"}), 200
+
+        for file in files:
+            file_path = os.path.join(download_folder, file)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+
+        return jsonify({"message": "All files deleted successfully"}), 200
+
+    except Exception as e:
+        return jsonify({"error": f"Failed to delete files: {str(e)}"}), 500
     
 @app.route('/model')
 def plot_model():
