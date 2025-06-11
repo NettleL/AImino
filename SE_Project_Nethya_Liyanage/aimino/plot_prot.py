@@ -60,7 +60,7 @@ def pearsons_corr_coef(pred, target):
 # ================================
 # Main Inference & Visualization
 # ================================
-def plot(pred_np, target_np, rmse, pearson):
+def plot(pred_np, target_np, rmse, pearson, key):
     
     fig = plt.figure(figsize=(14, 10))
     
@@ -100,7 +100,8 @@ def plot(pred_np, target_np, rmse, pearson):
     ax4.legend()
     
     # Title
-    fig.suptitle(f"RMSE: {rmse:.4f} | Pearson's Correlation Coefficient: {pearson:.4f}", fontsize=16)
+    fig.suptitle(key, fontsize=20)
+    fig.text(0.5, 0.93, f"RMSE: {rmse:.4f} | Pearson's Correlation Coefficient: {pearson:.4f}", fontsize=10, ha='center')
     plt.tight_layout(rect=[0, 0, 1, 0.95])
     
     # Convert the figure to a PNG image + encode it in Base64

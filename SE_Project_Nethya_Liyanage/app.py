@@ -139,7 +139,7 @@ def predict():
     # Generate plot Image
     plot_image = plot(dist_ca_map_pred.squeeze(0).cpu().numpy(),
                       tensor_target.squeeze(0).cpu().numpy(),
-                      rmse, pearson)
+                      rmse, pearson, key)
     
     # gets 3d coordinates for downloadable npz_file 
     xyz_pred = classical_mds(dist_ca_map_pred.squeeze(0).cpu().numpy())
