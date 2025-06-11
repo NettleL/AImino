@@ -9,7 +9,6 @@ from mpl_toolkits.mplot3d import Axes3D  # registers the 3D projection
 aimino_path = os.path.abspath(r"C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE_Project_Nethya_Liyanage\aimino")
 sys.path.append(aimino_path)
 
-# Now try importing
 from aimino import ProteinStructureModel
 
 
