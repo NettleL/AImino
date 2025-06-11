@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, flash, request, redirect, url_for, jsonify, send_from_directory
+from flask import Flask, render_template, flash, request, redirect, url_for, jsonify, send_from_directory, make_response
 from werkzeug.utils import secure_filename
 import torch
 import torch.nn.functional as F
@@ -9,7 +9,6 @@ from aimino.aimino import ProteinStructureModel
 from aimino.plot_prot import pearsons_corr_coef, plot, classical_mds
 from aimino.download import create_npz_file
 app = Flask(__name__)
-
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -137,12 +136,15 @@ def predict():
         key=key
     )
     
-    return render_template('predict.html', 
+    html = render_template('predict.html', 
                            rmse=rmse, 
                            pearson=pearson, 
                            plot_image=plot_image,
                            npz_filename=npz_filename,
                            error = '')
+    response = make_response(html)
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    return response
 
 @app.route('/download/<filename>')
 def download_file(filename):

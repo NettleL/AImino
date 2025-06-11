@@ -58,7 +58,8 @@ hr.gradient {
 <script>
 function downloadNPZ(){
     const filename = "{{ npz_filename }}";
-    fetch("/download/" + filename)
+    const timestamp = new Date().getTime()
+    fetch("/download/" + filename + '?t=' + timestamp)
     .then(function(response) {
        if (!response.ok) {
            return response.json().then(function(result) {
