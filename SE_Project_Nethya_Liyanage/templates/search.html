@@ -1,4 +1,3 @@
-<!-- IMPORTANT - must run server on python -m http.server 8000 so files are accessible -->
 <!-- search bar: https://www.w3schools.com/php/php_ajax_livesearch.asp -->
 {% extends "base.html" %}
 
@@ -7,24 +6,24 @@
 {% block style %}
 <style>
     .search-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
     }
     #livesearch {
-        margin-top: 10px;
-        border: 1px solid #ccc;
-        padding: 10px;
-        max-width: 400px;
-        text-align: left;
-        margin-bottom: 20px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      max-width: 400px;
+      text-align: left;
+      margin-bottom: 20px;
       }
     .result {
-        padding: 4px;
+      padding: 4px;
     }
     .result:hover {
-        background-color: #f0f0f0; /* Choose the colour you'd like */
+      background-color: #f0f0f0;
     }
     #loading-overlay {
       position: fixed;
@@ -33,8 +32,8 @@
       width: 100%;
       height: 100%;
       background: rgba(255, 255, 255, 0.8);
-      z-index: 1050; /* higher than most Bootstrap components */
-      display: none; /* hidden by default */
+      z-index: 1050;
+      display: none;
       align-items: center;
       justify-content: center;
     }
@@ -76,7 +75,8 @@
 <script>
   let dictData = {};
 
-  fetch("/static/test_fasta_dict.json")
+  // fetch dict data & store in dictData
+  fetch("/static/test_fasta_dict.json") 
     .then(response => response.json())
     .then(data => {
       dictData = data;
@@ -84,20 +84,24 @@
     })
     .catch(error => console.error("Error loading JSON:", error));
 
+  // display search results
   function showResult(input) {
-    const searchQuery = input.toLowerCase().trim();
+    const searchQuery = input.toLowerCase().trim(); // Unnecessary but kept anyways for potential future development
     const resultsContainer = document.getElementById("livesearch");
     let output = "";
 
+    // if user input is empty, clear results + return
     if (searchQuery.length === 0) {
       resultsContainer.innerHTML = "";
       return;
     }
 
-    for (const key in dictData) {
+    // Loop through dict data
+    for (const key in dictData) { 
       if (Object.prototype.hasOwnProperty.call(dictData, key)) {
         const value = dictData[key];
         if (
+          // if in key or value (amino acid string)
           key.toLowerCase().includes(searchQuery) ||
           value.toLowerCase().includes(searchQuery)
         ) {
@@ -107,30 +111,33 @@
         }
       }
     }
+    // Update search results container
     resultsContainer.innerHTML = output || "No suggestion";
     
+    // Adds event listener to each result on the page (so user can select a result element)
     document.querySelectorAll(".result").forEach(item => {
       item.addEventListener("click", function() {
         const selectedKey = this.getAttribute("data-key");
         console.log("User clicked:", selectedKey);
-        predict(selectedKey);
+        predict(selectedKey); // Call the predict function with selected key
       });
     });
     console.log("Search Query:", searchQuery);
   }
 
+  // send prediction request based on user selection
   function predict(key) {
-    document.getElementById('loading-overlay').style.display = 'flex';
+    document.getElementById('loading-overlay').style.display = 'flex'; // show loading screen overlay <3
     fetch('/predict', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ key: key })
+      body: JSON.stringify({ key: key }) // send selected key in request
     })
-      .then(response => response.text())
+      .then(response => response.text()) // parses response as text (HTML page)
       .then(html => {
-        // Replace the current document with the new HTML page from the prediction endpoint.
+        // Replace the current document with the new HTML page from the prediction endpoint
         document.open();
         document.write(html);
         document.close();

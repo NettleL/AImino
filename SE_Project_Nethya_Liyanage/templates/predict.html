@@ -62,26 +62,29 @@ function downloadNPZ(){
     const timestamp = new Date().getTime() // so each fetch has unique identifier (prevents issues)
     fetch("/download/" + filename + '?t=' + timestamp)
     .then(function(response) {
-       if (!response.ok) {
-           return response.json().then(function(result) {
-               throw new Error(result.error);
-           });
-       }
-       return response.blob();
+        if (!response.ok) {
+            // If response isn't OK, extract error message + throw error
+            return response.json().then(function(result) {
+                throw new Error(result.error);
+            });
+        }
+        return response.blob();
     })
     .then(function(blob) {
-         const url = window.URL.createObjectURL(blob);
-         const a = document.createElement('a');
-         a.style.display = 'none';
-         a.href = url;
-         a.download = filename;
-         document.body.appendChild(a);
-         a.click();
-         window.URL.revokeObjectURL(url);
+        // Create temporary download link + trigger file download
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click(); // Trigger download
+        window.URL.revokeObjectURL(url); // Clean up temporary object URL
     })
     .catch(function(error) {
+        // display error message in error-message element if request fails
          document.getElementById('error-message').innerHTML =
-              `<div class="alert alert-secondary">${error.message}</div>`;
+            `<div class="alert alert-secondary">${error.message}</div>`;
     });
 }
 
@@ -89,15 +92,15 @@ function deleteFiles() {
     fetch('/delete-files', { method: 'POST' })
         .then(response => response.json())
         .then(data => {
-            if (data.error) {
+            if (data.error) { // if deletion fails
                 document.getElementById('error-message').innerHTML =
                     `<div class="alert alert-secondary">${data.error}</div>`;
-            } else {
+            } else { // if deletion succeeds
                 document.getElementById('error-message').innerHTML =
                     `<div class="alert alert-light">${data.message}</div>`;
             }
         })
-        .catch(error => {
+        .catch(error => { // network issues or fetch errors
             document.getElementById('error-message').innerHTML =
                 `<div class="alert alert-secondary">Failed to communicate with server.</div>`;
             console.error('Error:', error);
