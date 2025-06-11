@@ -3,7 +3,6 @@ from flask import Flask, render_template, flash, request, redirect, url_for, jso
 from werkzeug.utils import secure_filename
 import torch
 import torch.nn.functional as F
-import numpy as np
 
 from aimino.aimino import ProteinStructureModel
 from aimino.plot_prot import pearsons_corr_coef, plot, classical_mds
@@ -128,8 +127,11 @@ def predict():
     # Model prediction
     with torch.no_grad():
         output = model(tensor_input, tensor_mask)
-        dist_ca_map_pred = output[0] if isinstance(output, tuple) else output
-
+        if isinstance(output, tuple):
+            dist_ca_map_pred = output[0]
+        else:
+            dist_ca_map_pred = output
+            
     tensor_target = test_target.detach().clone().unsqueeze(0).float()
     
     # Compute Stats
