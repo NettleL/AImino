@@ -84,15 +84,15 @@ def home():
 @app.route("/upload", methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
-        if 'file' not in request.files:
+        if 'file' not in request.files: # check if file is attached
             flash('No file attached in request')
             return redirect(request.url)
         file = request.files['file']
-        if file.filename=='':
+        if file.filename=='': # If file is not selected
             flash('No selected file')
             return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+        if file and allowed_file(file.filename): # validate file type
+            filename = secure_filename(file.filename) # secure :)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('plot_model', name=filename))
     return render_template('upload.html')

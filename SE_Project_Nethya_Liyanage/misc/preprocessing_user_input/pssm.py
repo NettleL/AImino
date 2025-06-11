@@ -10,7 +10,7 @@ pssm_counts = motif.counts
 
 probabilities = pssm_counts.normalize(pseudocounts=1e-6)
 
-# CHANGE BASED ON TYPICAL FREQ
+# CHANGE BASED ON TYPICAL FREQ --> SEE ACADEMIC TEXTS
 background_freq = {
     "A": 0.08, "C": 0.02, "D": 0.05, "E": 0.06, "F": 0.04,
     "G": 0.07, "H": 0.02, "I": 0.06, "K": 0.06, "L": 0.09,
