@@ -7,7 +7,7 @@ see https://docs.github.com/en/repositories/working-with-files/managing-large-fi
 Git LFS must be installed on the machine before cloning the repo.
 
 1. Download & install Git LFS
-2. Clone Repo (git clone https://github.com/NettleL/AImino.git )
+2. Clone Repo (git clone https://github.com/NettleL/AImino.git ) - AIMINO NOT ALMINO
 3. Initialise Git LFS (git lfs install)
 4. navigate to cloned repository (cd path\to\repository_folder)
 5. download the actual file (git lfs pull)
