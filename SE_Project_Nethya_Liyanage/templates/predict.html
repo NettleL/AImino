@@ -54,10 +54,11 @@ img {
         {% if error %} <div class="alert alert-secondary" role="alert"> {{ error }} </div> {% endif %}
         <hr class="gradient">
     </div>
-    <br>
+    <div style="height: 30px;"></div> <!-- Break so search button isn't accidentally clicked -->
     <div class="text-center">
         <a href="{{ url_for('search') }}" class="btn btn-light btn-lg"> Search </a>
     </div>
+    <div style="height: 30px;"></div> <!-- Break so search button isn't accidentally clicked -->
 </div>
 
 <script>
