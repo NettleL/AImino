@@ -1,4 +1,5 @@
 NOTE ON REQUIREMENTS
+
 This project contains large files tracked using git lfs (http://git-lfs.com/)
 
 see https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage for info
@@ -20,6 +21,7 @@ will provide all libraries necessary
 Alternatively, requirements can be installed through "pip install -r requirements.txt"
 
 NOTE ON MISC
+
 /preprocessing_training_data is not required for the program to function - it merely documents how the preprocessing of training data was executed so the program can be replicated
 
 /preprocessing_user_input is not required for the program to function - it contains misc. pieces of code I previously thought were useful but later learned I did not need. However, I was reluctant to delete them - I thought they may be useful to the user.
