@@ -43,12 +43,12 @@ img {
     </p>
     <div id="error-message"></div>
     <div>
-        <button class="btn btn-light btn-lg" onclick="downloadNPZ()">Download NPZ File</button>
+        <button type="button" class="btn btn-light btn-lg" onclick="downloadNPZ()">Download NPZ File</button>
     </div>
     <br>
     <div>
         <hr class="gradient">
-        <button class='btn btn-light btn-lg' onclick='deleteFiles()'>
+        <button type="button" class='btn btn-light btn-lg' onclick='deleteFiles()'>
         Clear All Files
         </button>
         {% if error %} <div class="alert alert-secondary" role="alert"> {{ error }} </div> {% endif %}

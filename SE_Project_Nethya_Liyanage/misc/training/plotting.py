@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import torch.nn.functional as F
 from mpl_toolkits.mplot3d import Axes3D  # registers the 3D projection
+import statistics
 
 aimino_path = os.path.abspath(r"C:\Users\nethy\OneDrive\Documents\Nethya\School\Year_12\12SE\6-Nethya-Liyanage\SE_Project_Nethya_Liyanage\aimino")
 sys.path.append(aimino_path)
@@ -67,6 +68,8 @@ def pearsons_corr_coef(pred, target):
 # ================================
 # Main Inference & Visualization
 # ================================
+rmse_list = []
+pearson_list = []
 def main():
     model = ProteinStructureModel(
         input_dim=427,
@@ -110,9 +113,11 @@ def main():
         mse_loss = F.mse_loss(dist_ca_map_pred, test_target)
         rmse_loss = torch.sqrt(mse_loss)
         pearsons_corr = pearsons_corr_coef(dist_ca_map_pred, test_target)
-                
-        print('RMSE:', rmse_loss.item())
-        print('Pearsons Coefficient:', pearsons_corr.item())
+        
+        rmse_list.append(rmse_loss.item())
+        pearson_list.append(pearsons_corr.item())       
+        #print('RMSE:', rmse_loss.item())
+        #print('Pearsons Coefficient:', pearsons_corr.item())
         
         
         # Convert outputs to np + remove batch dimension (for visualization)
@@ -165,6 +170,18 @@ def main():
                 
         plt.tight_layout()
         plt.show()
-
+        
+    rmse_avg = statistics.mean(rmse_list)
+    rmse_std_dev = statistics.stdev(rmse_list)
+    
+    print('rmse_avg', rmse_avg)
+    print('rmse_std_dev', rmse_std_dev)
+    
+    p_avg = statistics.mean(pearson_list)
+    p_std_dev = statistics.stdev(pearson_list)
+    
+    print('p_avg', p_avg)
+    print('p_std_dev', p_std_dev)
+    
 if __name__ == '__main__':
     main()
