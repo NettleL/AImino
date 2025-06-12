@@ -12,15 +12,14 @@ Git LFS must be installed on the machine before cloning the repo.
 4. navigate to cloned repository (cd repository_folder)
 5. download the actual file (git lfs pull)
 
-Pip installing
+Pip installing the following will provide all libraries necessary
 - flask
 - torch
 - matplotlib
-will provide all libraries necessary
  
 Alternatively, requirements can be installed through "pip install -r requirements.txt"
 
-NOTE ON MISC
+NOTE ON MISC FOLDER
 
 /preprocessing_training_data is not required for the program to function - it merely documents how the preprocessing of training data was executed so the program can be replicated
 
